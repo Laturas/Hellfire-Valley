@@ -146,6 +146,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2644273756854196173}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &3002945744169981111 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 945408230038389626, guid: 1b55bc0e24517754a9f9f85419a31f03,
+    type: 3}
+  m_PrefabInstance: {fileID: 2644273756854196173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5880214308795877305 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8442260536457695348, guid: 1b55bc0e24517754a9f9f85419a31f03,
