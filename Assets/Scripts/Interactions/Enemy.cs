@@ -1,4 +1,5 @@
-using System;
+// using System;
+// using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,7 +17,7 @@ public class Enemy : MonoBehaviour
     private bool attackPlayerIsOnCooldown;
     private float attackTowerCountdown;
     private float attackPlayerCountdown;
-    private float agentRedirectCooldown;
+    public float agentRedirectCooldown;
     private NavMeshAgent agent;
     public SOEnemy SOEnemy;
     private float overlapSphereCooldown;
@@ -44,12 +45,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agentRedirectCooldown -= Time.deltaTime;
-        if (agentRedirectCooldown <= 0)
-        {
-            changeAgentGoal(player);
-            agentRedirectCooldown = 0.6F;
-        }
+        // agentRedirectCooldown -= Time.deltaTime;
+        // if (agentRedirectCooldown <= 0)
+        // {
+        //     changeAgentGoal(player);
+        //     agentRedirectCooldown = 0.6F;
+        // }
 
         if (attackTowerIsOnCooldown)
         {
@@ -87,14 +88,38 @@ public class Enemy : MonoBehaviour
         overlapSphereCooldown -= Time.deltaTime;
         if (overlapSphereCooldown <= 0)
         {
-            // small chance to move target position to a tower if it is damaged by it
-            Collider[] detectedTargets = Physics.OverlapSphere(transform.position, SOEnemy.BaseEnemyDetectionRadius);
+            // idea: small chance to move target position to a tower if it is damaged by it?
 
+            Collider[] detectedTargets = Physics.OverlapSphere(transform.position, overlapSphereRadius);
+            GameObject closestTarget = null;
             foreach (Collider target in detectedTargets)
             {
-
+                if (target.gameObject.tag == "Player")
+                {
+                    closestTarget = target.gameObject;
+                    break;
+                }
+                if (closestTarget == null)
+                {
+                    closestTarget = target.gameObject;
+                }
+                else
+                {
+                    if (Vector3.Distance(this.transform.position, closestTarget.transform.position) >
+                        Vector3.Distance(this.transform.position, target.gameObject.transform.position))
+                    {
+                        closestTarget = target.gameObject;
+                    }
+                }
             }
+
+            changeAgentGoal(closestTarget);
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, overlapSphereRadius);
     }
 
     private void resetAttackTimer(float timer)
@@ -104,7 +129,15 @@ public class Enemy : MonoBehaviour
 
     private void changeAgentGoal(GameObject obj)
     {
-        agent.destination = new Vector3(obj.transform.position.x, 0.85F, obj.transform.position.z);
+        if (obj != null)
+        {
+            agent.destination = new Vector3(obj.transform.position.x, 0.85F, obj.transform.position.z);
+        }
+        else
+        {
+            agent.destination = new Vector3(this.transform.position.x + Random.Range(-10, 10), 0.85F,
+                this.transform.position.z + Random.Range(-10, 10));
+        }
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -121,6 +154,7 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.tag == "tower")
         {
             isTouchingTower = true;
+            overlapSphereRadius = SOEnemy.BaseEnemyDetectionRadius / 5;
         }
     }
 
@@ -133,7 +167,7 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.tag == "tower")
         {
             isTouchingTower = false;
-
+            overlapSphereRadius = SOEnemy.BaseEnemyDetectionRadius;
         }
 
     }
