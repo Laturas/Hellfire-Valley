@@ -1,12 +1,13 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public jack_player playerScript;
+    private PlayerEnemyTarget playerScript;
     public tower_jack towerScript;
-    public GameObject player;
+    private GameObject player;
     public GameObject tower;
     public bool isTouchingTower;
     public bool isTouchingPlayer;
@@ -19,18 +20,25 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     public SOEnemy SOEnemy;
     private float overlapSphereCooldown;
+    private int overlapSphereRadius;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // navmesh setup
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = player.transform.position;
+        playerScript = FindFirstObjectByType<PlayerEnemyTarget>();
+        player = playerScript.gameObject;
+        agent.destination = GameControl.instance.playerTransform.position;
+        agentRedirectCooldown = 1.5F;
+
+        // collision and attack cooldown setup
         attackMaxCooldown = 2F;
         attackTowerCountdown = attackMaxCooldown;
         attackPlayerCountdown = attackMaxCooldown;
 
-        agentRedirectCooldown = 1.5F;
-
+        // overlap sphere setup
         overlapSphereCooldown = 0.25F;
+        overlapSphereRadius = SOEnemy.BaseEnemyDetectionRadius;
     }
 
     // Update is called once per frame
@@ -72,14 +80,20 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                playerScript.hurt();
+                playerScript.Hurt();
             }
         }
 
         overlapSphereCooldown -= Time.deltaTime;
         if (overlapSphereCooldown <= 0)
         {
+            // small chance to move target position to a tower if it is damaged by it
             Collider[] detectedTargets = Physics.OverlapSphere(transform.position, SOEnemy.BaseEnemyDetectionRadius);
+
+            foreach (Collider target in detectedTargets)
+            {
+
+            }
         }
     }
 
@@ -90,7 +104,7 @@ public class Enemy : MonoBehaviour
 
     private void changeAgentGoal(GameObject obj)
     {
-        agent.destination = obj.transform.position;
+        agent.destination = new Vector3(obj.transform.position.x, 0.85F, obj.transform.position.z);
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -98,7 +112,7 @@ public class Enemy : MonoBehaviour
         {
             if (!attackPlayerIsOnCooldown)
             {
-                playerScript.hurt();
+                playerScript.Hurt();
                 resetAttackTimer(attackPlayerCountdown);
             }
             attackPlayerIsOnCooldown = true;
@@ -112,7 +126,15 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        isTouchingPlayer = false;
-        isTouchingTower = false;
+        if (collision.gameObject.tag == "player")
+        {
+            isTouchingPlayer = false;
+        }
+        else if (collision.gameObject.tag == "tower")
+        {
+            isTouchingTower = false;
+
+        }
+
     }
 }
