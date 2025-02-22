@@ -10,18 +10,14 @@ public class ShopSign : MonoBehaviour, IInteractable
     public float textHeight = 2f;
     [SerializeField] private TextMeshPro textPrefab;
 
-    private GameControl gameControl;
+    private HotbarManager hotbarManager;
     
     private void OnEnable()
     {
-        if (!gameControl)
+        hotbarManager = FindFirstObjectByType<HotbarManager>();
+        if (!hotbarManager)
         {
-            gameControl = FindFirstObjectByType<GameControl>();
-        }
-
-        if (!gameControl)
-        {
-            Debug.LogError("Please place the GameControl prefab in the scene :3");
+            Debug.LogError("Please place the hotbar prefab into the scene");
         }
     }
 
@@ -33,8 +29,10 @@ public class ShopSign : MonoBehaviour, IInteractable
     void Update() {
         tmpTextTransform.LookAt(GameControl.instance.playerTransform);
     }
-    public void Interact() {
-        Debug.Log("Purchased: " + item.itemName);
-        GameControl.instance.OnBuyItem?.Invoke(item);
+    public void Interact()
+    {
+        Debug.Log(hotbarManager.AddItem(item)
+            ? $"Successfully added item {item.itemName}"
+            : $"Could not add item {item.itemName}");
     }
 }

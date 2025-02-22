@@ -6,9 +6,11 @@ public class ThingPlacer : MonoBehaviour
     private bool canPlace;
     [SerializeField] private SOPlaceable currentPlaceable;
     Transform objectToPlaceTransform = null;
+    HotbarManager hotbar;
     void Start() {
         canPlace = false;
         overlaps = new Collider[10];
+        hotbar = FindAnyObjectByType<HotbarManager>();
     }
 
     public void ChangeObjectToPlace(SOPlaceable placeThisThing) {
@@ -20,12 +22,12 @@ public class ThingPlacer : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            ChangeObjectToPlace(SOManager.instance.placeables[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            ChangeObjectToPlace(SOManager.instance.placeables[1]);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        //     ChangeObjectToPlace(SOManager.instance.placeables[0]);
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        //     ChangeObjectToPlace(SOManager.instance.placeables[1]);
+        // }
         if (currentPlaceable == null) {
             return;
         }
