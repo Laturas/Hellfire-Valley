@@ -4,6 +4,7 @@ public class SOManager : MonoBehaviour
 {
     public static SOManager instance;
     public SOPlayerControls playerControls;
+    public SOBuildings buildingPrefabs;
 
     void Awake()
     {

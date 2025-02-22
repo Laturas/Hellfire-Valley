@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControls: {fileID: 11400000, guid: 3968a6228657eca46bd608b5e7485575, type: 2}
+  buildingPrefabs: {fileID: 11400000, guid: ca5f6fe33bffdff4181d946a795a83e9, type: 2}
