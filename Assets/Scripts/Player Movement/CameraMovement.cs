@@ -20,10 +20,11 @@ public class CameraMovement : MonoBehaviour
 		mouseInput.y *= SOManager.instance.playerControls.Ysensitivity;
 
 		currentLook.x += mouseInput.x;
-		currentLook.y = Mathf.Clamp(currentLook.y += mouseInput.y, -90, 90);
+		currentLook.y = Mathf.Clamp(currentLook.y + mouseInput.y, -90, 90);
 
-		transform.localRotation = Quaternion.AngleAxis(-currentLook.y, Vector3.right);
+		//transform.localRotation = Quaternion.AngleAxis(-currentLook.y, Vector3.right);
+		transform.localRotation = Quaternion.Euler(-currentLook.y, currentLook.x, 0);
 		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y);
-		transform.parent.transform.localRotation = Quaternion.Euler(0, currentLook.x, 0);
+		//transform.parent.transform.localRotation = Quaternion.Euler(0, currentLook.x, 0);
 	}
 }

@@ -92,9 +92,14 @@ public class PlayerMovement : MonoBehaviour
         float hAxis = Input.GetAxisRaw("Horizontal");
         float vAxis = Input.GetAxisRaw("Vertical");
 
-        Vector3 direction = new Vector3(hAxis, 0, vAxis);
+        //Vector3 direction = new Vector3(hAxis, 0, vAxis);
 
-        return rb.transform.TransformDirection(direction);
+        //return rb.transform.TransformDirection(direction);
+        var fwd = camCon.gameObject.transform.forward;
+        fwd.y = 0;
+        fwd = fwd.normalized;
+        var right = camCon.gameObject.transform.right;
+        return fwd * vAxis + right * hAxis;
     }
 	
     void OnCollisionEnter(Collision collision) {

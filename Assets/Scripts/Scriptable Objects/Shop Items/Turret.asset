@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Turret
   type: 2
-  hotbarItem: {fileID: 0}
+  hotbarItem: {fileID: 21300000, guid: 385c1f1fdd2e9984697efc137db953c5, type: 3}
   itemPrefab: {fileID: 2098771491724631922, guid: 532235f347c5aab4c9662570b816ef27,
     type: 3}
   price: 5
