@@ -15,4 +15,8 @@ public class SOPlayerControls : ScriptableObject
     public float jumpPower;
 
     public float wallFloorBarrierAngle = 60f;
+
+    [Header("Interaction")]
+    public float placeDistance;
+    public float placeCheckRadius;
 }

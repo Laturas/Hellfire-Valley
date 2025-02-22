@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e89322714149a04589e821b200599f4, type: 3}
-  m_Name: PlayerMoveParams
+  m_Name: PlayerParams
   m_EditorClassIdentifier: 
-  Xsensitivity: 0
-  Ysensitivity: 0
+  Xsensitivity: 2
+  Ysensitivity: 2
   playerSpeed: 10
   playerAirSpeed: 5
   playerAcceleration: 15
   playerAirAcceleration: 5
   jumpPower: 3.75
   wallFloorBarrierAngle: 60
+  placeDistance: 4
+  placeCheckRadius: 3

@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 // Controls
 public class CameraMovement : MonoBehaviour
 {
-	[SerializeField] private SOPlayerControls movementSettings;
 	Vector2 currentLook;
 	private Camera mainCamera;
 
@@ -18,8 +16,8 @@ public class CameraMovement : MonoBehaviour
     void Update()
 	{
 		Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-		mouseInput.x *= movementSettings.Xsensitivity;
-		mouseInput.y *= movementSettings.Ysensitivity;
+		mouseInput.x *= SOManager.instance.playerControls.Xsensitivity;
+		mouseInput.y *= SOManager.instance.playerControls.Ysensitivity;
 
 		currentLook.x += mouseInput.x;
 		currentLook.y = Mathf.Clamp(currentLook.y += mouseInput.y, -90, 90);
