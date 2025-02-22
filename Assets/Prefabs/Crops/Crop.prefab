@@ -366,7 +366,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7953687868399704317}
   - component: {fileID: 6961277954843532898}
-  m_Layer: 0
+  - component: {fileID: 3218379429474716064}
+  m_Layer: 8
   m_Name: Crop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3cfeaaf32ede445b675c7e83da369f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sellValue: 5
   timeToMaturity: 10
   cropLevels:
   - {fileID: 492335303960173518}
@@ -412,6 +414,27 @@ MonoBehaviour:
   - {fileID: 5381597392128025547}
   - {fileID: 7758147051669711042}
   - {fileID: 3202161652184428624}
+--- !u!65 &3218379429474716064
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852503456790008090}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2850969145423483618
 GameObject:
   m_ObjectHideFlags: 0

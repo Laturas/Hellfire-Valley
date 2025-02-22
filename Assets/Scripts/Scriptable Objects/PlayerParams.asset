@@ -22,3 +22,4 @@ MonoBehaviour:
   wallFloorBarrierAngle: 60
   placeDistance: 4
   placeCheckRadius: 3
+  steepestBuildingPlaceAngle: 30

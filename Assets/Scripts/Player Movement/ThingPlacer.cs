@@ -20,12 +20,12 @@ public class ThingPlacer : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            ChangeObjectToPlace(SOManager.instance.placeables[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            ChangeObjectToPlace(SOManager.instance.placeables[1]);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        //     ChangeObjectToPlace(SOManager.instance.placeables[0]);
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        //     ChangeObjectToPlace(SOManager.instance.placeables[1]);
+        // }
         if (currentPlaceable == null) {
             return;
         }
