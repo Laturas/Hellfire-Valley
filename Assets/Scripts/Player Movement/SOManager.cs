@@ -6,6 +6,7 @@ public class SOManager : MonoBehaviour
     public SOPlayerControls playerControls;
     public SOBuildings buildingPrefabs;
     public SOShopItem[] shopItems;
+    public SOPlaceable[] placeables;
 
     void Awake()
     {

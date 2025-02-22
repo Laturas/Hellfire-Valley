@@ -46,3 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerControls: {fileID: 11400000, guid: 3968a6228657eca46bd608b5e7485575, type: 2}
   buildingPrefabs: {fileID: 11400000, guid: ca5f6fe33bffdff4181d946a795a83e9, type: 2}
+  shopItems:
+  - {fileID: 11400000, guid: ee64fe0b63e75f04b8651c27a1e00c98, type: 2}
+  placeables:
+  - {fileID: 11400000, guid: 4c2ae560739b3ec419e84f78f1e2e631, type: 2}
+  - {fileID: 11400000, guid: c8e89c66037aeaa41b4da98fbb022787, type: 2}

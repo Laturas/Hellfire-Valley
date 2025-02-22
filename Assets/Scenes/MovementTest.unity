@@ -772,8 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed8579d734fe50408014f18aaf60fe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeDistance: 4
-  placeCheckRadius: 3
+  currentPlaceable: {fileID: 0}
 --- !u!1 &1691482863
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,9 +923,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1553399560232298141, guid: 680876881b9141547b4b51b99ec294e5,
         type: 3}
+      propertyPath: placeables.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553399560232298141, guid: 680876881b9141547b4b51b99ec294e5,
+        type: 3}
       propertyPath: 'shopItems.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: ee64fe0b63e75f04b8651c27a1e00c98,
+        type: 2}
+    - target: {fileID: 1553399560232298141, guid: 680876881b9141547b4b51b99ec294e5,
+        type: 3}
+      propertyPath: 'placeables.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c2ae560739b3ec419e84f78f1e2e631,
+        type: 2}
+    - target: {fileID: 1553399560232298141, guid: 680876881b9141547b4b51b99ec294e5,
+        type: 3}
+      propertyPath: 'placeables.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c8e89c66037aeaa41b4da98fbb022787,
         type: 2}
     - target: {fileID: 2287902194659176097, guid: 680876881b9141547b4b51b99ec294e5,
         type: 3}

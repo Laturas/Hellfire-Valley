@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779eac0f15c4d144184d6cd253179205, type: 3}
+  m_Name: Crop
+  m_EditorClassIdentifier: 
+  placeableAnywhere: 0
+  snapType: 4
+  prefab: {fileID: 1852503456790008090, guid: be24e31ec8d3e8b46b333dceabc60ca5, type: 3}
+  targetable: 0
+  health: 100

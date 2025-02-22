@@ -4,16 +4,21 @@ using UnityEngine;
 public class ThingPlacer : MonoBehaviour
 {
     private bool canPlace;
+    [SerializeField] private SOPlaceable currentPlaceable;
     Transform objectToPlaceTransform = null;
     void Start() {
         canPlace = false;
         overlaps = new Collider[10];
     }
 
+    public void ChangeObjectToPlace(SOPlaceable placeThisThing) {
+        currentPlaceable = placeThisThing;
+    }
+
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
             if (objectToPlaceTransform == null) {
-                objectToPlaceTransform = Instantiate(SOManager.instance.buildingPrefabs.flowerBed).transform;
+                objectToPlaceTransform = Instantiate(currentPlaceable.prefab).transform;
             } else {
                 if (canPlace) {
                     objectToPlaceTransform = null;
@@ -22,7 +27,11 @@ public class ThingPlacer : MonoBehaviour
             }
         }
         if (objectToPlaceTransform != null) {
-            PlacementLogic();
+            if (currentPlaceable.placeableAnywhere) {
+                PlacementLogicAnywhere();
+            } else {
+                PlacementLogicSnap();
+            }
         }
     }
 
@@ -35,7 +44,27 @@ public class ThingPlacer : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + transform.forward * distance, radius);
     }
 
-    private void PlacementLogic() {
+    private void PlacementLogicAnywhere() {
+        RaycastHit hit;
+        float distance = SOManager.instance.playerControls.placeDistance;
+        Vector3 placePos = transform.position + transform.forward * distance;
+        Vector3 placeDir = Vector3.up;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, distance)) {
+            placePos = hit.point;
+            placeDir = hit.normal;
+            Snappable snappableComponent;
+            if (hit.collider.gameObject.TryGetComponent(out snappableComponent)) {
+                if (snappableComponent.IsValidSnap(AcceptSnap.Crops)) {
+                    placePos = snappableComponent.gameObject.transform.position;
+                    placeDir = snappableComponent.gameObject.transform.up;
+                }
+            }
+        }
+        objectToPlaceTransform.position = placePos;
+        objectToPlaceTransform.up = placeDir;
+    }
+
+    private void PlacementLogicSnap() {
         float distance = SOManager.instance.playerControls.placeDistance;
         float radius = SOManager.instance.playerControls.placeCheckRadius;
         Vector3 placePos = transform.position + transform.forward * distance;
@@ -46,7 +75,7 @@ public class ThingPlacer : MonoBehaviour
             Collider hit = overlaps[i];
             Snappable snappableComponent;
             if (hit.gameObject.TryGetComponent(out snappableComponent)) {
-                if (snappableComponent.IsValidSnap(AcceptSnap.Crops)) {
+                if (snappableComponent.IsValidSnap(currentPlaceable.snapType)) {
                     placePos = snappableComponent.gameObject.transform.position;
                     placeDir = snappableComponent.gameObject.transform.up;
                     canPlace = true;
@@ -55,18 +84,6 @@ public class ThingPlacer : MonoBehaviour
             }
         }
 
-        // RaycastHit hit;
-        // if (Physics.Raycast(transform.position, transform.forward, out hit, placeDistance)) {
-        //     placePos = hit.point;
-        //     placeDir = hit.normal;
-        //     Snappable snappableComponent;
-        //     if (hit.collider.gameObject.TryGetComponent(out snappableComponent)) {
-        //         if (snappableComponent.IsValidSnap(AcceptSnap.Crops)) {
-        //             placePos = snappableComponent.gameObject.transform.position;
-        //             placeDir = snappableComponent.gameObject.transform.up;
-        //         }
-        //     }
-        // }
         objectToPlaceTransform.position = placePos;
         objectToPlaceTransform.up = placeDir;
     }
