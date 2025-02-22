@@ -6,9 +6,11 @@ public class ThingPlacer : MonoBehaviour
     private bool canPlace;
     [SerializeField] private SOPlaceable currentPlaceable;
     Transform objectToPlaceTransform = null;
+    HotbarManager hotbar;
     void Start() {
         canPlace = false;
         overlaps = new Collider[10];
+        hotbar = FindAnyObjectByType<HotbarManager>();
     }
 
     public void ChangeObjectToPlace(SOPlaceable placeThisThing) {
