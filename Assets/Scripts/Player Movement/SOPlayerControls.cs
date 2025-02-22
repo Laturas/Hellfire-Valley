@@ -19,6 +19,9 @@ public class SOPlayerControls : ScriptableObject
     [Header("Interaction")]
     public float placeDistance;
     public float placeCheckRadius;
+    [Header("Water Hose")]
+    public float hoseSprayOrigin;
+    public float hoseSprayRadius;
 
     [Header("Buildings")]
     public float steepestBuildingPlaceAngle;

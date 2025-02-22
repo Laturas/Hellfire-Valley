@@ -6,6 +6,7 @@ public class Crop : MonoBehaviour, IInteractable
 {
     public int sellValue;
     [SerializeField] private float timeToMaturity = 10f;
+    [SerializeField] private float timeToWater = 5f;
 
     [SerializeField] private List<GameObject> cropLevels;
 
@@ -16,6 +17,9 @@ public class Crop : MonoBehaviour, IInteractable
     private int levelIndex = 0;
 
     private bool isMature = false;
+    private float waterTimer;
+
+    public bool isWatered;
     
     private void OnEnable()
     {
@@ -30,6 +34,9 @@ public class Crop : MonoBehaviour, IInteractable
 
     private void Update()
     {
+        if (!isWatered) return;
+        waterTimer -= Time.deltaTime;
+        if (waterTimer <= 0) isWatered = false;
         if (isMature) return;
         timer += Time.deltaTime;
         if (!(timer >= timeBetweenLevels)) return;
@@ -37,6 +44,11 @@ public class Crop : MonoBehaviour, IInteractable
         levelIndex++;
         SetLevel(levelIndex);
         if (levelIndex == cropLevels.Count - 1) isMature = true;
+    }
+
+    public void WaterThisPlant() {
+        isWatered = true;
+        waterTimer = timeToWater;
     }
 
     private void SetLevel(int index)
