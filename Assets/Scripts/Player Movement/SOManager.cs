@@ -7,6 +7,7 @@ public class SOManager : MonoBehaviour
     public SOBuildings buildingPrefabs;
     public SOShopItem[] shopItems;
     public SOPlaceable[] placeables;
+    public SOTurret[] turretTypes;
 
     void Awake()
     {

@@ -13,9 +13,23 @@ public class ThingPlacer : MonoBehaviour
 
     public void ChangeObjectToPlace(SOPlaceable placeThisThing) {
         currentPlaceable = placeThisThing;
+        if (objectToPlaceTransform != null) {
+            Destroy(objectToPlaceTransform.gameObject);
+            objectToPlaceTransform = Instantiate(currentPlaceable.prefab).transform;
+        }
     }
 
     void Update() {
+        // if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        //     ChangeObjectToPlace(SOManager.instance.placeables[0]);
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        //     ChangeObjectToPlace(SOManager.instance.placeables[1]);
+        // }
+        if (currentPlaceable == null) {
+            return;
+        }
+        
         if (Input.GetMouseButtonDown(0)) {
             if (objectToPlaceTransform == null) {
                 objectToPlaceTransform = Instantiate(currentPlaceable.prefab).transform;
@@ -52,13 +66,9 @@ public class ThingPlacer : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, distance)) {
             placePos = hit.point;
             placeDir = hit.normal;
-            Snappable snappableComponent;
-            if (hit.collider.gameObject.TryGetComponent(out snappableComponent)) {
-                if (snappableComponent.IsValidSnap(AcceptSnap.Crops)) {
-                    placePos = snappableComponent.gameObject.transform.position;
-                    placeDir = snappableComponent.gameObject.transform.up;
-                }
-            }
+            canPlace = true;
+        } else {
+            canPlace = false;
         }
         objectToPlaceTransform.position = placePos;
         objectToPlaceTransform.up = placeDir;
