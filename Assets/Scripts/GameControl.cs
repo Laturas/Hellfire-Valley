@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameControl : MonoBehaviour
@@ -6,6 +7,8 @@ public class GameControl : MonoBehaviour
     public Transform playerTransform;
     public int playerHealth {get; private set;}
     public int playerMoney {get; private set;}
+
+    public Action<SOShopItem> OnBuyItem;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake() {
         instance = this;
