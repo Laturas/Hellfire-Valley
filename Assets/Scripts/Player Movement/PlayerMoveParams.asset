@@ -18,5 +18,5 @@ MonoBehaviour:
   playerAirSpeed: 5
   playerAcceleration: 15
   playerAirAcceleration: 5
-  jumpPower: 5
+  jumpPower: 3.75
   wallFloorBarrierAngle: 60
