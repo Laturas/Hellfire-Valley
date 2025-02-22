@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb117cc6f197c446a1c7ba91faff341, type: 3}
+  m_Name: SOWorldHudIcons
+  m_EditorClassIdentifier: 
+  waterIcon: {fileID: 161793331708824973, guid: 9569d026238ebf24ca2c08fd64484e2d,
+    type: 3}
+  harvestIcon: {fileID: 0}
+  healthIcon: {fileID: 0}

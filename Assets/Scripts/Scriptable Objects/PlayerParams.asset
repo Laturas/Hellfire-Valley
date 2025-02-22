@@ -22,4 +22,6 @@ MonoBehaviour:
   wallFloorBarrierAngle: 60
   placeDistance: 4
   placeCheckRadius: 3
+  hoseSprayOrigin: 2
+  hoseSprayRadius: 3
   steepestBuildingPlaceAngle: 30
