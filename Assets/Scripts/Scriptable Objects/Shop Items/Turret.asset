@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e33250080a1c5144a33a50f3b4c205b, type: 3}
-  m_Name: DefaultTurret
+  m_Script: {fileID: 11500000, guid: 3647507b6ebcc9c4c90e63139a558346, type: 3}
+  m_Name: Turret
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  rotateSpeed: 5
-  fireDelay: 1
-  range: 10
+  itemName: Turret
+  type: 2
+  hotbarItem: {fileID: 0}
+  itemPrefab: {fileID: 2098771491724631922, guid: 532235f347c5aab4c9662570b816ef27,
+    type: 3}
+  price: 5

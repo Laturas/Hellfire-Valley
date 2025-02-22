@@ -3,6 +3,7 @@ using UnityEngine;
 public enum ItemType {
     Default,
     FlowerItem,
+    TurretItem,
 }
 
 [CreateAssetMenu(fileName = "SOShopItem", menuName = "Scriptable Objects/SOShopItem")]
