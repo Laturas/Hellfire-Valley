@@ -19,4 +19,7 @@ public class SOPlayerControls : ScriptableObject
     [Header("Interaction")]
     public float placeDistance;
     public float placeCheckRadius;
+
+    [Header("Buildings")]
+    public float steepestBuildingPlaceAngle;
 }

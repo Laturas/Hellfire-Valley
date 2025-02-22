@@ -20,12 +20,12 @@ public class ThingPlacer : MonoBehaviour
     }
 
     void Update() {
-        // if (Input.GetKeyDown(KeyCode.Alpha1)) {
-        //     ChangeObjectToPlace(SOManager.instance.placeables[0]);
-        // }
-        // if (Input.GetKeyDown(KeyCode.Alpha2)) {
-        //     ChangeObjectToPlace(SOManager.instance.placeables[1]);
-        // }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            ChangeObjectToPlace(SOManager.instance.placeables[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            ChangeObjectToPlace(SOManager.instance.placeables[1]);
+        }
         if (currentPlaceable == null) {
             return;
         }
@@ -51,12 +51,12 @@ public class ThingPlacer : MonoBehaviour
 
     private Collider[] overlaps;
 
-    void OnDrawGizmos()
-    {
-        float distance = SOManager.instance.playerControls.placeDistance;
-        float radius = SOManager.instance.playerControls.placeCheckRadius;
-        Gizmos.DrawWireSphere(transform.position + transform.forward * distance, radius);
-    }
+    // void OnDrawGizmos()
+    // {
+    //     float distance = SOManager.instance.playerControls.placeDistance;
+    //     float radius = SOManager.instance.playerControls.placeCheckRadius;
+    //     Gizmos.DrawWireSphere(transform.position + transform.forward * distance, radius);
+    // }
 
     private void PlacementLogicAnywhere() {
         RaycastHit hit;
@@ -66,7 +66,8 @@ public class ThingPlacer : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, distance, 1 << 0)) {
             placePos = hit.point;
             placeDir = hit.normal;
-            canPlace = true;
+            canPlace = Vector3.Angle(placeDir, Vector3.up) < SOManager.instance.playerControls.steepestBuildingPlaceAngle;
+            Debug.Log(Vector3.Angle(placeDir, Vector3.up));
         } else {
             canPlace = false;
         }
@@ -90,6 +91,8 @@ public class ThingPlacer : MonoBehaviour
                     placeDir = snappableComponent.gameObject.transform.up;
                     canPlace = true;
                     break;
+                } else {
+                    canPlace = false;
                 }
             }
         }

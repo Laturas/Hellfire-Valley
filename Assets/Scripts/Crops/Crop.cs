@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crop : MonoBehaviour
+public class Crop : MonoBehaviour, IInteractable
 {
+    public int sellValue;
     [SerializeField] private float timeToMaturity = 10f;
 
     [SerializeField] private List<GameObject> cropLevels;
@@ -44,6 +45,15 @@ public class Crop : MonoBehaviour
         for (var i = 0; i < cropLevels.Count; i++)
         {
             cropLevels[i].SetActive(i == index);
+        }
+    }
+
+    public void Interact()
+    {
+        if (isMature) {
+            GameControl.instance.UpdateMoney(sellValue);
+            Debug.Log("Sold! Money = " + GameControl.instance.playerMoney);
+            Destroy(gameObject);
         }
     }
 }
