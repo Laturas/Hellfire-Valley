@@ -18,7 +18,6 @@ public class InputManagerSingleton : MonoBehaviour
 
 	void OnInteractButtonPressed(InputAction.CallbackContext callbackContext) {
         OnInteract?.Invoke();
-        Debug.Log("this");
 	}
 
     void OnEnable() {

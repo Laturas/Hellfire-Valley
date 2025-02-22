@@ -63,7 +63,7 @@ public class ThingPlacer : MonoBehaviour
         float distance = SOManager.instance.playerControls.placeDistance;
         Vector3 placePos = transform.position + transform.forward * distance;
         Vector3 placeDir = Vector3.up;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, distance)) {
+        if (Physics.Raycast(transform.position, transform.forward, out hit, distance, 1 << 0)) {
             placePos = hit.point;
             placeDir = hit.normal;
             canPlace = true;
