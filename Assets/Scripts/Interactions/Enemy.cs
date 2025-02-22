@@ -1,5 +1,4 @@
-// using System;
-// using System.Numerics;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -91,9 +90,14 @@ public class Enemy : MonoBehaviour
             // idea: small chance to move target position to a tower if it is damaged by it?
 
             Collider[] detectedTargets = Physics.OverlapSphere(transform.position, overlapSphereRadius);
+
             GameObject closestTarget = null;
             foreach (Collider target in detectedTargets)
             {
+                if (target.gameObject == this || target.gameObject.layer == 10 || target.gameObject.tag == "Enemy")
+                {
+                    continue;
+                }
                 if (target.gameObject.tag == "Player")
                 {
                     closestTarget = target.gameObject;
