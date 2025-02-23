@@ -394,7 +394,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.51, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1422556445821996021}
   m_Father: {fileID: 8099848703826859869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &945408230038389626
@@ -526,6 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 945408230038389626}
+  wateringCan: {fileID: 5093048598963684310}
 --- !u!1 &8442260536457695348
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camCon: {fileID: 3079391759081037427}
+  activeCoyoteTime: 0
 --- !u!54 &156580806909049677
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -693,4 +696,137 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultHealth: 0
+  thisIsPlayer: 0
   <team>k__BackingField: 0
+  <variant>k__BackingField: 0
+--- !u!1001 &1456728600057539614
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2754215832336734316}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05990853
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05990853
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05990853
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.22766033
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9737406
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 153.681
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6652725513331149018, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c60b97a3486072a4a80db6f4ac1b04f0, type: 2}
+    - target: {fileID: 919132149155446097, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: m_Name
+      value: Watering Can
+      objectReference: {fileID: 0}
+    - target: {fileID: 8032750206264916975, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c60b97a3486072a4a80db6f4ac1b04f0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5093048598963684310}
+  m_SourcePrefab: {fileID: 100100000, guid: 07a9827b24ca24b42bfd5479a77e5cf9, type: 3}
+--- !u!4 &1422556445821996021 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1456728600057539614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1798694509741723983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07a9827b24ca24b42bfd5479a77e5cf9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1456728600057539614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5093048598963684310
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798694509741723983}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f6afab445cbca4042939c64181f81d13, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
