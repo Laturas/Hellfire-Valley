@@ -300,6 +300,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Control Singleton
       objectReference: {fileID: 0}
+    - target: {fileID: 2222569553176821824, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499895858275895009, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4836073421075706697, guid: 1bd64783af25fa742a4f45cf99123524,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -349,6 +359,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225884017521056451, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387755008295737525, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819917866491072364, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -880,30 +905,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 9da370960792e2a4a9b41c9b2be4e893, type: 2}
   m_BuildHeightMesh: 0
---- !u!1 &919132147756993556 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2250668259309484792, guid: ac14233055977494a9462999113fffc3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8079565903427832164}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &919132148760306842 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 841269842406168104, guid: ac14233055977494a9462999113fffc3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8079565903427832164}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &919132149188206080 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3788701349732990789, guid: ac14233055977494a9462999113fffc3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8079565903427832164}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &919132149578142366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9705690166265658, guid: ac14233055977494a9462999113fffc3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8079565903427832164}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2570318720185754931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1311,50 +1312,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9705690166265658, guid: ac14233055977494a9462999113fffc3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 841269842406168104, guid: ac14233055977494a9462999113fffc3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2250668259309484792, guid: ac14233055977494a9462999113fffc3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3530739399260366595, guid: ac14233055977494a9462999113fffc3,
-        type: 3}
-      propertyPath: cropLevels.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3530739399260366595, guid: ac14233055977494a9462999113fffc3,
-        type: 3}
-      propertyPath: 'cropLevels.Array.data[0]'
-      value: 
-      objectReference: {fileID: 919132149188206080}
-    - target: {fileID: 3530739399260366595, guid: ac14233055977494a9462999113fffc3,
-        type: 3}
-      propertyPath: 'cropLevels.Array.data[1]'
-      value: 
-      objectReference: {fileID: 919132149578142366}
-    - target: {fileID: 3530739399260366595, guid: ac14233055977494a9462999113fffc3,
-        type: 3}
-      propertyPath: 'cropLevels.Array.data[2]'
-      value: 
-      objectReference: {fileID: 919132147756993556}
-    - target: {fileID: 3530739399260366595, guid: ac14233055977494a9462999113fffc3,
-        type: 3}
-      propertyPath: 'cropLevels.Array.data[3]'
-      value: 
-      objectReference: {fileID: 919132148760306842}
-    - target: {fileID: 3788701349732990789, guid: ac14233055977494a9462999113fffc3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5492951606427399464, guid: ac14233055977494a9462999113fffc3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1409,6 +1366,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CropComplete
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433564659882448695, guid: ac14233055977494a9462999113fffc3,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

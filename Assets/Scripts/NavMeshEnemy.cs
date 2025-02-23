@@ -119,7 +119,9 @@ public class NavMeshEnemy : MonoBehaviour
         Damageable maybeDamage;
         if (collision.gameObject.TryGetComponent(out maybeDamage)) {
             target = maybeDamage;
-            enemyAnimator.SetTrigger("Attack");
+            if (enemyAnimator != null) {
+                enemyAnimator.SetTrigger("Attack");
+            }
             maybeDamage.DealDamage(baseMeleeDamage, Team.EnemyTeam);
             isTouching = true;
         }
