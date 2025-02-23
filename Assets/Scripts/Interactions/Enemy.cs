@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     public SOEnemy SOEnemy;
     private float overlapSphereCooldown;
     private int overlapSphereRadius;
+    private bool isIdle;
+    private float idleUpdateCooldown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,18 +41,25 @@ public class Enemy : MonoBehaviour
         // overlap sphere setup
         overlapSphereCooldown = 0.25F;
         overlapSphereRadius = SOEnemy.BaseEnemyDetectionRadius;
+
+        //idle movement setup
+        idleUpdateCooldown = 5F;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // agentRedirectCooldown -= Time.deltaTime;
-        // if (agentRedirectCooldown <= 0)
-        // {
-        //     changeAgentGoal(player);
-        //     agentRedirectCooldown = 0.6F;
-        // }
+        updateAttackCooldowns();
 
+        overlapSphereCooldown -= Time.deltaTime;
+        if (overlapSphereCooldown <= 0)
+        {
+            updatePathAndTarget();
+        }
+    }
+
+    private void updateAttackCooldowns()
+    {
         if (attackTowerIsOnCooldown)
         {
             attackTowerCountdown -= Time.deltaTime;
@@ -83,44 +92,40 @@ public class Enemy : MonoBehaviour
                 playerScript.Hurt();
             }
         }
+    }
+    private void updatePathAndTarget()
+    {
+        // idea: small chance to move target position to a tower if it is damaged by it?
 
-        overlapSphereCooldown -= Time.deltaTime;
-        if (overlapSphereCooldown <= 0)
+        Collider[] detectedTargets = Physics.OverlapSphere(transform.position, overlapSphereRadius);
+        GameObject closestTarget = null;
+        foreach (Collider target in detectedTargets)
         {
-            // idea: small chance to move target position to a tower if it is damaged by it?
-
-            Collider[] detectedTargets = Physics.OverlapSphere(transform.position, overlapSphereRadius);
-
-            GameObject closestTarget = null;
-            foreach (Collider target in detectedTargets)
+            if (target.gameObject.layer == 10 || target.gameObject.tag == "Enemy")
             {
-                if (target.gameObject == this || target.gameObject.layer == 10 || target.gameObject.tag == "Enemy")
-                {
-                    continue;
-                }
-                if (target.gameObject.tag == "Player")
+                continue;
+            }
+            if (target.gameObject.tag == "Player")
+            {
+                closestTarget = target.gameObject;
+                break;
+            }
+            if (closestTarget == null)
+            {
+                closestTarget = target.gameObject;
+            }
+            else
+            {
+                if (Vector3.Distance(this.transform.position, closestTarget.transform.position) >
+                    Vector3.Distance(this.transform.position, target.gameObject.transform.position))
                 {
                     closestTarget = target.gameObject;
-                    break;
-                }
-                if (closestTarget == null)
-                {
-                    closestTarget = target.gameObject;
-                }
-                else
-                {
-                    if (Vector3.Distance(this.transform.position, closestTarget.transform.position) >
-                        Vector3.Distance(this.transform.position, target.gameObject.transform.position))
-                    {
-                        closestTarget = target.gameObject;
-                    }
                 }
             }
-
-            changeAgentGoal(closestTarget);
         }
-    }
 
+        changeAgentGoal(closestTarget);
+    }
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, overlapSphereRadius);
@@ -136,11 +141,18 @@ public class Enemy : MonoBehaviour
         if (obj != null)
         {
             agent.destination = new Vector3(obj.transform.position.x, 0.85F, obj.transform.position.z);
+            isIdle = false;
         }
         else
         {
-            agent.destination = new Vector3(this.transform.position.x + Random.Range(-10, 10), 0.85F,
-                this.transform.position.z + Random.Range(-10, 10));
+            if (!isIdle || idleUpdateCooldown <= 0)
+            {
+                agent.destination = new Vector3(this.transform.position.x + Random.Range(-10, 10), 0.85F,
+                    this.transform.position.z + Random.Range(-10, 10));
+                idleUpdateCooldown = 5f;
+            }
+            idleUpdateCooldown -= Time.deltaTime;
+            isIdle = true;
         }
     }
     void OnCollisionEnter(Collision collision)
