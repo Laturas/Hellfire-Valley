@@ -124,6 +124,9 @@ public class Crop : AbstractPlaceable, IInteractable
     public void Interact()
     {
         if (isMature) {
+            if (sellValue == 800) {
+                GameControl.instance.UpdateHealth(5);
+            }
             GameControl.instance.UpdateMoney(sellValue);
             ReleaseSnappable();
             Debug.Log("Sold! Money = " + GameControl.instance.playerMoney);

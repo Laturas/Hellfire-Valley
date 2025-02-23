@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 6961277954843532898}
   - component: {fileID: 3218379429474716064}
   m_Layer: 13
-  m_Name: Corn
+  m_Name: Bloodfruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -406,9 +406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3cfeaaf32ede445b675c7e83da369f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sellValue: 60
-  baseTimeToMaturity: 15
-  timeToWater: 10
+  sellValue: 800
+  baseTimeToMaturity: 45
+  timeToWater: 20
   cropLevels:
   - {fileID: 492335303960173518}
   - {fileID: 3701254716075391315}
