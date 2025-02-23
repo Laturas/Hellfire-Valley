@@ -4,6 +4,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     public Camera playerCamera;
     public Animator wateringCan;
+    public GameObject water;
     private Collider[] plantColliders;
 
     private void Start() {
@@ -23,6 +24,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Q)) {
             wateringCan.SetBool("Watering", true);
+            water.SetActive(true);
             int foundColliders = Physics.OverlapSphereNonAlloc(transform.position + SOManager.instance.playerControls.hoseSprayOrigin * transform.forward, SOManager.instance.playerControls.hoseSprayRadius, plantColliders, 1 << 13, QueryTriggerInteraction.Collide);
 
             for (int i = 0; i < foundColliders; i++) {
@@ -33,6 +35,7 @@ public class PlayerInteraction : MonoBehaviour
             }
         } else {
             wateringCan.SetBool("Watering", false);
+            water.SetActive(false);
         }
     }
 }
