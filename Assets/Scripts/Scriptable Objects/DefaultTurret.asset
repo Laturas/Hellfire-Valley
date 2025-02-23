@@ -16,3 +16,5 @@ MonoBehaviour:
   rotateSpeed: 5
   fireDelay: 1
   range: 10
+  bulletPrefab: {fileID: 9021131116994794464, guid: a282ee3a6cfe31a45a09e2c4d7810406,
+    type: 3}

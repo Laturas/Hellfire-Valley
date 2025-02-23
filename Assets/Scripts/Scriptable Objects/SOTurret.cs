@@ -9,4 +9,5 @@ public class SOTurret : ScriptableObject
     [Header("Attacking")]
     public float fireDelay;
     public float range;
+    public GameObject bulletPrefab;
 }

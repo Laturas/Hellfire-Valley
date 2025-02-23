@@ -106,10 +106,9 @@ public class Crop : AbstractPlaceable, IInteractable
 
     public void WaterThisPlant()
     {
-        if (!enabled) return;
         isWatered = true;
         waterTimer = timeToWater;
-        waterIconScript.DisableIcon();
+        if (waterIconScript) waterIconScript.DisableIcon();
     }
 
     private void SetLevel(int index)

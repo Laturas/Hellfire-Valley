@@ -32,10 +32,10 @@ public class ShopSign : MonoBehaviour, IInteractable
     public void Interact()
     {
         // Check if we have enough money, if we do, buy the item, otherwise, send a message/event or something
-        if (GameControl.instance.UpdateMoney(item.price))
+        if (GameControl.instance.UpdateMoney(-item.price))
         {
             bool itemAdded = hotbarManager.AddItem(item);
-            if (!itemAdded) GameControl.instance.UpdateMoney(-item.price);
+            if (!itemAdded) GameControl.instance.UpdateMoney(item.price);
         }
         else
         {

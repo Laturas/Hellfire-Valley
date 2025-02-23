@@ -12,8 +12,8 @@ public class GameControl : MonoBehaviour
     public Transform playerTransform;
     public Camera playerCamera;
     public GameObject ui;
-    public int playerHealth {get; private set;}
-    public int playerMoney {get; private set;}
+    [field: SerializeField] public int playerHealth {get; private set;}
+    [field: SerializeField] public int playerMoney {get; private set;}
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake() {

@@ -49,6 +49,8 @@ MonoBehaviour:
   playerTransform: {fileID: 1098334350450924707}
   playerCamera: {fileID: 3002945744169981111}
   ui: {fileID: 4498328881050936442}
+  <playerHealth>k__BackingField: 100
+  <playerMoney>k__BackingField: 100
 --- !u!1001 &2644273756854196173
 PrefabInstance:
   m_ObjectHideFlags: 0
