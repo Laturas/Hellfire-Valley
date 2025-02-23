@@ -322,6 +322,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 242040610364950552, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
         type: 3}
       propertyPath: hotbar
@@ -344,6 +349,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
         type: 3}
+      propertyPath: waveStarts.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: 'waveStarts.Array.data[0]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: 'waveStarts.Array.data[1]'
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: 'waveStarts.Array.data[2]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: 'waveStarts.Array.data[3]'
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: 'waveStarts.Array.data[4]'
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
       propertyPath: <playerHealth>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -356,6 +391,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Drag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782680941751676032, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782680941751676032, guid: 1bd64783af25fa742a4f45cf99123524,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 4571745924255839948, guid: 1bd64783af25fa742a4f45cf99123524,
         type: 3}

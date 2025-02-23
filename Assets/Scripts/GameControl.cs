@@ -17,10 +17,12 @@ public class GameControl : MonoBehaviour
     [SerializeField] private int startingPlayerHealth;
     [field: SerializeField] public int playerHealth {get; private set;}
     [field: SerializeField] public int playerMoney {get; private set;}
-    private int netWorth;
+    [SerializeField] private int netWorth;
     [Header("Spawn Rate Curve")]
     [field: SerializeField] public float spawnRate {get; private set;}
     [SerializeField] private float spawnRateRiseFactor = 25f;
+    [SerializeField] int[] waveStarts;
+    private bool playerIsDead = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake() {
@@ -37,7 +39,7 @@ public class GameControl : MonoBehaviour
     private bool pausingEnabled = true;
     public GameObject pauseScreen;
     public GameObject hotbar;
-    public int currentWave {get; private set;}
+    [field: SerializeField] public int currentWave {get; private set;}
     [SerializeField] bool hurtPlayer = false;
 
     public void TriggerOnDeathUIUpdates() {
@@ -93,6 +95,7 @@ public class GameControl : MonoBehaviour
 
     }
     public void UpdateHealth(int changeAmount) {
+        if (playerIsDead) {return;}
         playerHealth += changeAmount;
         if (playerHealth <= 0)
         {
@@ -101,6 +104,7 @@ public class GameControl : MonoBehaviour
     }
 
     private void KillPlayer() {
+        playerIsDead = true;
         deadPlayer.SetActive(true);
         deadPlayer.transform.position = playerTransform.position + new Vector3(0f,0.5f,0f);
         deadPlayer.transform.rotation = playerCamera.transform.rotation;
@@ -119,7 +123,11 @@ public class GameControl : MonoBehaviour
     private void CalculateSpawnRate() {
         float exponent = -Mathf.Sqrt(netWorth) / spawnRateRiseFactor;
         spawnRate = 1 / Mathf.Exp(exponent);
-        
+        if (currentWave <= waveStarts.Length - 1) {
+            if (waveStarts[currentWave] < netWorth) {
+                currentWave++;
+            }
+        }
     }
 
 }
