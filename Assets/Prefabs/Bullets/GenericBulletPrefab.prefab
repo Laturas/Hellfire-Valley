@@ -134,6 +134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 15
   bulletDamage: 10
+  bloodSplatter: {fileID: 8248078873772238518, guid: 40ddce9df949c31418a974002001ffc8,
+    type: 3}
 --- !u!65 &1673544948041868089
 BoxCollider:
   m_ObjectHideFlags: 0

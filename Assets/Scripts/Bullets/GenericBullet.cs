@@ -5,6 +5,7 @@ public class GenericBullet : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed = 5f;
     [SerializeField] private int bulletDamage = 10;
+    [SerializeField] private GameObject bloodSplatter;
 
     private Damageable target = null;
     public void SetTarget(Damageable t)
@@ -25,6 +26,7 @@ public class GenericBullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<Damageable>().DealDamage(bulletDamage, Team.FriendlyTeam);
+            Instantiate(bloodSplatter, transform.position, Quaternion.identity);
             DespawnBullet();
         }
     }
