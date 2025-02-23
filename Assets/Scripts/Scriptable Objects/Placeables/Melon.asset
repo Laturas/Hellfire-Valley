@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779eac0f15c4d144184d6cd253179205, type: 3}
+  m_Name: Melon
+  m_EditorClassIdentifier: 
+  itemName: Corn
+  type: 0
+  shopLocation: 0
+  price: 300
+  hotbarIcon: {fileID: 21300000, guid: 385c1f1fdd2e9984697efc137db953c5, type: 3}
+  itemPrefab: {fileID: 1852503456790008090, guid: 39e424d703580aa44b26b7b14b899ddf,
+    type: 3}
+  snapType: 4
+  placeableAnywhere: 0
+  health: 100
+  targetable: 0

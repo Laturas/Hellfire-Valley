@@ -51,8 +51,8 @@ MonoBehaviour:
   playerCamera: {fileID: 3002945744169981111}
   deadPlayer: {fileID: 7242043674832330994}
   ui: {fileID: 4498328881050936442}
-  startingPlayerMoney: 100
-  startingPlayerHealth: 1
+  startingPlayerMoney: 300
+  startingPlayerHealth: 100
   <playerHealth>k__BackingField: 1
   <playerMoney>k__BackingField: 100
   netWorth: 0

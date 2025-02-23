@@ -48,7 +48,10 @@ MonoBehaviour:
   buildingPrefabs: {fileID: 11400000, guid: ca5f6fe33bffdff4181d946a795a83e9, type: 2}
   placeables:
   - {fileID: 11400000, guid: 4c2ae560739b3ec419e84f78f1e2e631, type: 2}
-  - {fileID: 11400000, guid: c8e89c66037aeaa41b4da98fbb022787, type: 2}
+  - {fileID: 11400000, guid: acb0fa133d9eaed4fa8bbe00b0a961dc, type: 2}
+  - {fileID: 11400000, guid: a2946090de4e094438979698b5e7de79, type: 2}
+  - {fileID: 11400000, guid: 51143e1db3e23e2469fe7f575d8070ea, type: 2}
+  - {fileID: 11400000, guid: 07af259fa9a14594b94db824696064ce, type: 2}
   turretTypes:
   - {fileID: 11400000, guid: f3c26384551ea684495995a1eef4cd4b, type: 2}
   - {fileID: 11400000, guid: bc078f31a9e2bf742b7fb82f8bf96a4b, type: 2}

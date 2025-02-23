@@ -28,6 +28,7 @@ public class Damageable : MonoBehaviour
         if (attackerTeam == team) {return;}
         if (thisIsPlayer) {
             GameControl.instance.UpdateHealth(-amount);
+            Debug.Log(team + "" + health);
             return;
         }
         health -= amount;

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779eac0f15c4d144184d6cd253179205, type: 3}
+  m_Name: ScrapRepeaterPlaceable
+  m_EditorClassIdentifier: 
+  itemName: ScrapRepeater
+  type: 2
+  shopLocation: 1
+  price: 200
+  hotbarIcon: {fileID: 21300000, guid: 6daca20e80bd50c43a31bf9f060c50c3, type: 3}
+  itemPrefab: {fileID: 5400420918328194618, guid: 1746aab9df85b2c4383d035ca005661a,
+    type: 3}
+  snapType: 1
+  placeableAnywhere: 1
+  health: 1
+  targetable: 1

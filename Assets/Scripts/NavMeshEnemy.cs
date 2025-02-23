@@ -115,6 +115,7 @@ public class NavMeshEnemy : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision)
     {
+        Debug.Log("Attack");
         Damageable maybeDamage;
         if (collision.gameObject.TryGetComponent(out maybeDamage)) {
             target = maybeDamage;
