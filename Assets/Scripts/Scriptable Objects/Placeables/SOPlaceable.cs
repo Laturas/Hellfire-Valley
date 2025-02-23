@@ -20,7 +20,8 @@ public enum ItemType {
     Default,
     FlowerBed,
     Turret,
-    Sprinkler
+    Sprinkler,
+    LightTower,
 }
 
 public enum ShopLocation
