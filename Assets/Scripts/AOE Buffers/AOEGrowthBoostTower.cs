@@ -16,6 +16,10 @@ public class AOEGrowthBoostTower : MonoBehaviour, IAOEBuff
             }
         }
     }
+    void Start()
+    {
+        AlertCrops();   
+    }
 
     public void Inform(Crop crop) {
         if ((crop.transform.position - transform.position).magnitude <= radius) {
