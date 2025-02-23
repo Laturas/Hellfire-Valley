@@ -3,7 +3,6 @@ using UnityEngine.AI;
 
 public class NavMeshEnemy : MonoBehaviour
 {
-    public tower_jack towerScript;
     private Damageable target;
     public bool isTouching;
     [SerializeField] private float attackCooldown = 2f;
@@ -11,7 +10,6 @@ public class NavMeshEnemy : MonoBehaviour
     private float currentCooldown;
     public float agentRedirectCooldown;
     private NavMeshAgent agent;
-    public SOEnemy SOEnemy;
     private float overlapSphereCooldown = 0.25f;
     [SerializeField] private float awarenessRadius = 10f;
     private bool isIdle;
@@ -55,9 +53,9 @@ public class NavMeshEnemy : MonoBehaviour
         attackTarget.DealDamage(baseMeleeDamage, Team.EnemyTeam);
     }
 
-    [SerializeField] Collider[] colliderResult = new Collider[10];
     private void updatePathAndTarget()
     {
+        Collider[] colliderResult = new Collider[10];
         // idea: small chance to move target position to a tower if it is damaged by it?
 
         int count = Physics.OverlapSphereNonAlloc(transform.position, awarenessRadius, colliderResult, 1 << 11 | 1 << 12, QueryTriggerInteraction.Collide);
