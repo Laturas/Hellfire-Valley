@@ -55,11 +55,11 @@ public class NavMeshEnemy : MonoBehaviour
         attackTarget.DealDamage(baseMeleeDamage, Team.EnemyTeam);
     }
 
+    [SerializeField] Collider[] colliderResult = new Collider[10];
     private void updatePathAndTarget()
     {
         // idea: small chance to move target position to a tower if it is damaged by it?
 
-        Collider[] colliderResult = new Collider[10];
         int count = Physics.OverlapSphereNonAlloc(transform.position, awarenessRadius, colliderResult, 1 << 11 | 1 << 12, QueryTriggerInteraction.Collide);
         Damageable closestTarget = null;
         Damageable potentialTarget;

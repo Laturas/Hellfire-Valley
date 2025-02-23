@@ -482,6 +482,7 @@ GameObject:
   - component: {fileID: 524421784}
   - component: {fileID: 524421783}
   - component: {fileID: 524421782}
+  - component: {fileID: 524421786}
   m_Layer: 0
   m_Name: Walkable Surface
   m_TagString: Untagged
@@ -578,6 +579,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &524421786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524421781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: e8d1941a97c37ea488dc45690ff6e868, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &554404054
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &554404055
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -884,12 +917,12 @@ PrefabInstance:
     - target: {fileID: 2097946581516463788, guid: 801ed6c83033afa40b374094b7dc1d12,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4252079662569802711, guid: 801ed6c83033afa40b374094b7dc1d12,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.582947
+      value: -12.41
       objectReference: {fileID: 0}
     - target: {fileID: 4252079662569802711, guid: 801ed6c83033afa40b374094b7dc1d12,
         type: 3}
@@ -936,10 +969,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6313567842690958627, guid: 801ed6c83033afa40b374094b7dc1d12, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2097946581516463788, guid: 801ed6c83033afa40b374094b7dc1d12,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1798379480}
   m_SourcePrefab: {fileID: 100100000, guid: 801ed6c83033afa40b374094b7dc1d12, type: 3}
 --- !u!1 &946796196
 GameObject:
@@ -1097,7 +1135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultHealth: 77
-  thisTeam: 0
 --- !u!1 &1376792396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,6 +1369,31 @@ MonoBehaviour:
   m_DefaultActionMap: Main Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &1798379472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2097946581516463788, guid: 801ed6c83033afa40b374094b7dc1d12,
+    type: 3}
+  m_PrefabInstance: {fileID: 883867983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1798379480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798379472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949d2422c06a3b441af6a8c46b4df68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerScript: {fileID: 0}
+  isTouching: 0
+  attackCooldown: 2
+  baseMeleeDamage: 5
+  agentRedirectCooldown: 0
+  SOEnemy: {fileID: 0}
+  awarenessRadius: 10
 --- !u!1 &1883184381
 GameObject:
   m_ObjectHideFlags: 0
