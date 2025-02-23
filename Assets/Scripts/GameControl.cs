@@ -21,11 +21,19 @@ public class GameControl : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void UpdateMoney(int changeAmount) {
+    public bool UpdateMoney(int changeAmount) {
         playerMoney += changeAmount;
+        if (playerMoney >= 0) return true;
+        playerMoney -= changeAmount;
+        return false;
+
     }
     public void UpdateHealth(int changeAmount) {
-        playerMoney += changeAmount;
+        playerHealth += changeAmount;
+        if (playerHealth <= 0)
+        {
+            Debug.LogWarning("PLAYER DIED!!!!");
+        }
     }
 
     public void Die(DeathType deathType, GameObject dyingGameObject) {

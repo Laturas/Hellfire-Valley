@@ -31,8 +31,15 @@ public class ShopSign : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        Debug.Log(hotbarManager.AddItem(item)
-            ? $"Successfully added item {item.itemName}"
-            : $"Could not add item {item.itemName}");
+        // Check if we have enough money, if we do, buy the item, otherwise, send a message/event or something
+        if (GameControl.instance.UpdateMoney(item.price))
+        {
+            bool itemAdded = hotbarManager.AddItem(item);
+            if (!itemAdded) GameControl.instance.UpdateMoney(-item.price);
+        }
+        else
+        {
+            Debug.Log("Not enough money :(");
+        }
     }
 }

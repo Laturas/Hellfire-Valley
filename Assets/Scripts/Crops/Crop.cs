@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Unity.Entities.UniversalDelegates;
 using UnityEngine;
 
-public class Crop : MonoBehaviour, IInteractable
+public class Crop : AbstractPlaceable, IInteractable
 {
     public int sellValue;
     [SerializeField] private float baseTimeToMaturity = 10f;
@@ -94,7 +94,7 @@ public class Crop : MonoBehaviour, IInteractable
         if (levelIndex == cropLevels.Count - 1) isMature = true;
 
         if (isMature) {
-            if (waterIcon != null) {
+            if (waterIcon) {
                 Destroy(waterIcon);
                 waterIcon = null;
                 waterIconScript = null;
@@ -104,7 +104,9 @@ public class Crop : MonoBehaviour, IInteractable
         }
     }
 
-    public void WaterThisPlant() {
+    public void WaterThisPlant()
+    {
+        if (!enabled) return;
         isWatered = true;
         waterTimer = timeToWater;
         waterIconScript.DisableIcon();
@@ -123,6 +125,7 @@ public class Crop : MonoBehaviour, IInteractable
     {
         if (isMature) {
             GameControl.instance.UpdateMoney(sellValue);
+            ReleaseSnappable();
             Debug.Log("Sold! Money = " + GameControl.instance.playerMoney);
             Destroy(harvestIcon);
             Destroy(gameObject);

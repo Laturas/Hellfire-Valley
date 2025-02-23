@@ -90,7 +90,13 @@ public class PreviewManager : MonoBehaviour
         foreach (var monoBehaviour in scripts)
         {
             monoBehaviour.enabled = false;
-            Debug.Log(monoBehaviour.name);
+        }
+        
+        // Disable all colliders
+        var colliders = previewObject.GetAllNestedComponentsOfType<Collider>();
+        foreach (var col in colliders)
+        {
+            col.enabled = false;
         }
         
         // Change all materials to be the preview

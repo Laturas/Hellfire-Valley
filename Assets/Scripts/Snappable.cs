@@ -18,4 +18,14 @@ public class Snappable : MonoBehaviour
     public bool IsValidSnap(AcceptSnap objectType) {
         return (thisCanSnapToMe & objectType) > 0;
     }
+
+    public void Occupy()
+    {
+        occupied = true;
+    }
+
+    public void Release()
+    {
+        occupied = false;
+    }
 }

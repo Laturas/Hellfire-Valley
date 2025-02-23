@@ -11,6 +11,8 @@ public class HotbarManager : MonoBehaviour
     [SerializeField] private GameObject hotbarItemPrefab;
     private HotbarItem[] hotbarItems;
     private int hotbarSelectionIndex = 0;
+
+    public event Action<SOPlaceable> OnItemSelected;
     
     private void OnEnable()
     {
@@ -35,12 +37,10 @@ public class HotbarManager : MonoBehaviour
     private void Update()
     {
         var scrollWheelValue = Input.GetAxis("Mouse ScrollWheel");
-        if (scrollWheelValue != 0)
-        {
-            //Debug.Log($"Scrolled {Input.mouseScrollDelta.y * .1f}");
-            hotbarSelectionIndex = (hotbarSelectionIndex + (scrollWheelValue < 0 ? 1 : -1) + hotbarItems.Length) % hotbarItems.Length;
-            MoveSelectionBox();
-        }
+        if (scrollWheelValue == 0) return;
+        hotbarSelectionIndex = (hotbarSelectionIndex + (scrollWheelValue < 0 ? 1 : -1) + hotbarItems.Length) % hotbarItems.Length;
+        OnItemSelected?.Invoke(hotbarItems[hotbarSelectionIndex].GetShopItem());
+        MoveSelectionBox();
     }
 
     private void MoveSelectionBox()
@@ -62,7 +62,7 @@ public class HotbarManager : MonoBehaviour
     public bool AddItem(SOPlaceable shopItem)
     {
         var item = GetAppropriateHotbarItem(shopItem);
-        if (item == null) return false;
+        if (!item) return false;
         if (item.IsEmpty())
         {
             // Add item to new slot
@@ -74,7 +74,7 @@ public class HotbarManager : MonoBehaviour
         {
             item.IncreaseCount();
         }
-
+        OnItemSelected?.Invoke(hotbarItems[hotbarSelectionIndex].GetShopItem());
         return true;
     }
 
@@ -82,7 +82,8 @@ public class HotbarManager : MonoBehaviour
     {
         var item = hotbarItems.FirstOrDefault(it => it.IsOfType(shopItem.type) && !it.IsEmpty());
         if (item) item.DecreaseCount();
-        return item != null;
+        OnItemSelected?.Invoke(hotbarItems[hotbarSelectionIndex].GetShopItem());
+        return item;
     }
 
     private HotbarItem GetAppropriateHotbarItem(SOPlaceable shopItem)
@@ -90,7 +91,7 @@ public class HotbarManager : MonoBehaviour
         HotbarItem item = null;
         // First we see if the player already has an item of this type, if so, add it there
         item = hotbarItems.FirstOrDefault(it => it.IsOfType(shopItem.type));
-        if (item != null) return item;
+        if (item) return item;
         // If we don't already have this item, check if the currently selected hotbar box is empty, if it is, add it there
         if (hotbarItems[hotbarSelectionIndex].IsEmpty()) return hotbarItems[hotbarSelectionIndex];
         // If the current slot is full, get the first free slot, if it exists, add it there

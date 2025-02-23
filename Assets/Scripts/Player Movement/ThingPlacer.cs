@@ -10,22 +10,35 @@ public class ThingPlacer : MonoBehaviour
     private PreviewManager previewManager;
     private Collider[] overlaps;
     private Vector3 placePosition = Vector3.zero;
+    private Snappable placeToSnapTo;
     
     private void Start() {
         canPlace = false;
         overlaps = new Collider[10];
-        hotbar = FindAnyObjectByType<HotbarManager>();
-        previewManager = FindFirstObjectByType<PreviewManager>();
+        hotbar ??= FindAnyObjectByType<HotbarManager>();
+        previewManager ??= FindFirstObjectByType<PreviewManager>();
     }
 
     private void OnEnable()
     {
-        
+        hotbar ??= FindAnyObjectByType<HotbarManager>();
+        previewManager ??= FindFirstObjectByType<PreviewManager>();
+        hotbar.OnItemSelected += OnItemSelected;
     }
 
     private void OnDisable()
     {
-        
+        hotbar.OnItemSelected -= OnItemSelected;
+    }
+
+    private void OnItemSelected(SOPlaceable item)
+    {
+        if (!item)
+        {
+            currentPlaceable = null;
+            previewManager.DisablePreview();
+        }
+        else ChangeObjectToPlace(item);
     }
 
     public void ChangeObjectToPlace(SOPlaceable placeThisThing) {
@@ -34,29 +47,25 @@ public class ThingPlacer : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            ChangeObjectToPlace(SOManager.instance.placeables[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            ChangeObjectToPlace(SOManager.instance.placeables[1]);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        //     ChangeObjectToPlace(SOManager.instance.placeables[0]);
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        //     ChangeObjectToPlace(SOManager.instance.placeables[1]);
+        // }
         if (!currentPlaceable) {
             return;
         }
         
         if (Input.GetMouseButtonDown(0)) {
-            if (!previewManager.IsPreviewActive())
-            {
-                previewManager.PlacePreview(currentPlaceable, transform.position, true);
-            }
-            else
-            {
-                if (canPlace) {
-                    //objectToPlaceTransform = null;
-                    previewManager.DisablePreview();
-                    Instantiate(currentPlaceable.itemPrefab, placePosition, Quaternion.identity);
-                    canPlace = false;
-                }
+            if (canPlace) {
+                //objectToPlaceTransform = null;
+                previewManager.DisablePreview();
+                var gobj = Instantiate(currentPlaceable.itemPrefab, placePosition, Quaternion.identity);
+                
+                if (placeToSnapTo) gobj.GetComponent<AbstractPlaceable>().OccupySnappable(placeToSnapTo);
+                if (!hotbar.RemoveItem(currentPlaceable)) Debug.LogWarning("Tried removing item that doesn't exist");
+                canPlace = false;
             }
         }
         if (previewManager.IsPreviewActive() && currentPlaceable.placeableAnywhere) {
@@ -85,6 +94,7 @@ public class ThingPlacer : MonoBehaviour
         } else {
             canPlace = false;
         }
+        placeToSnapTo = null;
         PlaceObject(placePos, placeDir);
     }
 
@@ -100,9 +110,10 @@ public class ThingPlacer : MonoBehaviour
             Snappable snappableComponent;
             if (hit.gameObject.TryGetComponent(out snappableComponent))
             {
-                if (snappableComponent.IsValidSnap(currentPlaceable.snapType)) {
+                if (snappableComponent.IsValidSnap(currentPlaceable.snapType) && !snappableComponent.occupied) {
                     placePos = snappableComponent.gameObject.transform.position;
                     placeDir = snappableComponent.gameObject.transform.up;
+                    placeToSnapTo = snappableComponent;
                     canPlace = true;
                     PlaceObject(placePos, placeDir);
                     return;
@@ -110,6 +121,7 @@ public class ThingPlacer : MonoBehaviour
             }
         }
 
+        placeToSnapTo = null;
         canPlace = false;
         PlaceObject(placePos, placeDir);
     }
