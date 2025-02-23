@@ -365,7 +365,7 @@ PrefabInstance:
     - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
         type: 3}
       propertyPath: 'waveStarts.Array.data[2]'
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
         type: 3}
@@ -1025,6 +1025,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998650279954430044, guid: 388e7066e9b9b5c41acc99338b29ee96,
+        type: 3}
+      propertyPath: wave
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4899352480952701627, guid: 388e7066e9b9b5c41acc99338b29ee96,
         type: 3}

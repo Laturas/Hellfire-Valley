@@ -9,11 +9,13 @@ public class EnemySpawner : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (timer > 0 && wave <= GameControl.instance.currentWave) {
+        if (timer > 0) {
             timer -= Time.fixedDeltaTime;
         } else {
-            timer = timerMax;
-            Instantiate(enemy.prefab, transform.position, Quaternion.identity);
+            if (wave <= GameControl.instance.currentWave) {
+                timer = timerMax;
+                Instantiate(enemy.prefab, transform.position, Quaternion.identity);
+            }
         }
     }
 }
