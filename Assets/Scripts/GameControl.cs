@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum DeathType {
     BuildingDeath,
@@ -36,16 +37,33 @@ public class GameControl : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            paused = !paused;
-            if (paused) {
-                pauseScreen.SetActive(true);
-                Time.timeScale = 0;
-            } else {
-                pauseScreen.SetActive(false);
-                Time.timeScale = 1;
-            }
+            TogglePause();
         }
         CalculateSpawnRate();
+    }
+
+    public void TogglePause() {
+        paused = !paused;
+        if (paused) {
+            pauseScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0;
+        } else {
+            pauseScreen.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Time.timeScale = 1;
+        }
+    }
+
+    public Slider sensitivitySlider;
+    public void UpdateSensitivity() {
+        GlobalSettings.instance.sensitivityModifier = sensitivitySlider.value;
+    }
+    public Slider volumeSlider;
+    public void UpdateVolume() {
+        GlobalSettings.instance.volumeModifier = volumeSlider.value;
     }
 
     public bool UpdateMoney(int changeAmount) {
