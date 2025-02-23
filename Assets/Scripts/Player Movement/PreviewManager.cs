@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class PreviewManager : MonoBehaviour
 {
-    [SerializeField] private List<SOPlaceable> placeableItemSOs;
     [SerializeField] private Material greenPreviewMaterial;
     [SerializeField] private Material redPreviewMaterial;
+    private List<SOPlaceable> placeableItemSOs;
     private List<PreviewItem> generatedPreviewItems;
     
     private PreviewItem currentPreviewItem;
     
     private void Start()
     {
+        placeableItemSOs = SOManager.instance.placeables.ToList();
         generatedPreviewItems = new List<PreviewItem>();
         foreach (var generatedItem in placeableItemSOs.Select(GeneratePreviewItem))
         {

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Test Turret
   type: 2
+  shopLocation: 1
   price: 15
   hotbarIcon: {fileID: 21300000, guid: 6daca20e80bd50c43a31bf9f060c50c3, type: 3}
   itemPrefab: {fileID: 2098771491724631922, guid: 532235f347c5aab4c9662570b816ef27,
