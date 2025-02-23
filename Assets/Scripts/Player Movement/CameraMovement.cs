@@ -19,8 +19,8 @@ public class CameraMovement : MonoBehaviour
 		mouseInput.x *= SOManager.instance.playerControls.Xsensitivity;
 		mouseInput.y *= SOManager.instance.playerControls.Ysensitivity;
 
-		currentLook.x += mouseInput.x;
-		currentLook.y = Mathf.Clamp(currentLook.y + mouseInput.y, -90, 90);
+		currentLook.x += mouseInput.x * Time.deltaTime;
+		currentLook.y = Mathf.Clamp(currentLook.y + (mouseInput.y * Time.deltaTime), -90, 90);
 
 		//transform.localRotation = Quaternion.AngleAxis(-currentLook.y, Vector3.right);
 		transform.localRotation = Quaternion.Euler(-currentLook.y, currentLook.x, 0);

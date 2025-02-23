@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e89322714149a04589e821b200599f4, type: 3}
   m_Name: PlayerParams
   m_EditorClassIdentifier: 
-  Xsensitivity: 2
-  Ysensitivity: 2
+  Xsensitivity: 500
+  Ysensitivity: 500
   playerSpeed: 10
   playerAirSpeed: 5
   playerAcceleration: 20

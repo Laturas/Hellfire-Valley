@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
         // overlap sphere setup
         overlapSphereCooldown = 0.25F;
-        overlapSphereRadius = SOEnemy.BaseEnemyDetectionRadius;
+        //overlapSphereRadius = DeoSOEnemy.BaseEnemyDetectionRadius;
 
         //idle movement setup
         idleUpdateCooldown = 5F;
@@ -168,7 +168,7 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.tag == "tower")
         {
             isTouchingTower = true;
-            overlapSphereRadius = SOEnemy.BaseEnemyDetectionRadius / 5;
+            //overlapSphereRadius = SOEnemy.BaseEnemyDetectionRadius / 5;
         }
     }
 
@@ -181,7 +181,7 @@ public class Enemy : MonoBehaviour
         else if (collision.gameObject.tag == "tower")
         {
             isTouchingTower = false;
-            overlapSphereRadius = SOEnemy.BaseEnemyDetectionRadius;
+            //overlapSphereRadius = SOEnemy.BaseEnemyDetectionRadius;
         }
 
     }
