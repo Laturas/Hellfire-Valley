@@ -2,8 +2,8 @@ using UnityEngine;
 
 public enum ItemType {
     Default,
-    FlowerItem,
-    TurretItem,
+    FlowerBed,
+    Turret,
 }
 
 [CreateAssetMenu(fileName = "SOShopItem", menuName = "Scriptable Objects/SOShopItem")]

@@ -8,6 +8,7 @@ public class SOManager : MonoBehaviour
     public SOShopItem[] shopItems;
     public SOPlaceable[] placeables;
     public SOTurret[] turretTypes;
+    public SOWorldHudIcons hudIcons;
 
     void Awake()
     {

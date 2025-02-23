@@ -24,7 +24,6 @@ public class PlayerInteraction : MonoBehaviour
             int foundColliders = Physics.OverlapSphereNonAlloc(transform.position + SOManager.instance.playerControls.hoseSprayOrigin * transform.forward, SOManager.instance.playerControls.hoseSprayRadius, plantColliders, 1 << 8, QueryTriggerInteraction.Collide);
 
             for (int i = 0; i < foundColliders; i++) {
-                Debug.Log(plantColliders[i].gameObject);
                 Crop cropScript;
                 if (plantColliders[i].gameObject.TryGetComponent(out cropScript)) {
                     cropScript.WaterThisPlant();

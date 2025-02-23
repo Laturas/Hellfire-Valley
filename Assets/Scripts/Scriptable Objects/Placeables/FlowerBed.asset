@@ -17,3 +17,4 @@ MonoBehaviour:
   prefab: {fileID: 431836473063495879, guid: 6e14c6609492ed546815fb1d3dc56382, type: 3}
   targetable: 0
   health: 100
+  type: 1

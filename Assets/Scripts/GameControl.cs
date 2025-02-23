@@ -5,6 +5,8 @@ public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
     public Transform playerTransform;
+    public Camera playerCamera;
+    public GameObject ui;
     public int playerHealth {get; private set;}
     public int playerMoney {get; private set;}
 
