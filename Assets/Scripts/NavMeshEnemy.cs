@@ -80,7 +80,6 @@ public class NavMeshEnemy : MonoBehaviour
                 }
             }
         }
-
         changeAgentGoal((closestTarget == null) ? null : closestTarget.gameObject);
     }
     // void OnDrawGizmos()
@@ -106,20 +105,20 @@ public class NavMeshEnemy : MonoBehaviour
             isIdle = true;
         }
     }
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         Damageable maybeDamage;
-        if (collision.collider.gameObject.TryGetComponent(out maybeDamage)) {
+        if (collision.gameObject.TryGetComponent(out maybeDamage)) {
             target = maybeDamage;
             maybeDamage.DealDamage(baseMeleeDamage, Team.EnemyTeam);
             isTouching = true;
         }
     }
 
-    void OnCollisionExit(Collision collision)
+    void OnTriggerExit(Collider collision)
     {
         Damageable maybeDamage;
-        if (collision.collider.gameObject.TryGetComponent(out maybeDamage)) {
+        if (collision.gameObject.TryGetComponent(out maybeDamage)) {
             target = maybeDamage;
             maybeDamage.DealDamage(baseMeleeDamage, Team.EnemyTeam);
             isTouching = false;

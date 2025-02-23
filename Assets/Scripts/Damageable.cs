@@ -25,6 +25,7 @@ public class Damageable : MonoBehaviour
             return;
         }
         health -= amount;
+        Debug.Log(team + "" + health);
         if (health <= 0) {
             GameControl.instance.Die(DeathType.BuildingDeath, gameObject);
         }
