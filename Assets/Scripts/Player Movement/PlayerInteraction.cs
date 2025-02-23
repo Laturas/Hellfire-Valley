@@ -21,7 +21,7 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
         if (Input.GetKeyDown(KeyCode.Q)) {
-            int foundColliders = Physics.OverlapSphereNonAlloc(transform.position + SOManager.instance.playerControls.hoseSprayOrigin * transform.forward, SOManager.instance.playerControls.hoseSprayRadius, plantColliders, 1 << 8, QueryTriggerInteraction.Collide);
+            int foundColliders = Physics.OverlapSphereNonAlloc(transform.position + SOManager.instance.playerControls.hoseSprayOrigin * transform.forward, SOManager.instance.playerControls.hoseSprayRadius, plantColliders, 1 << 13, QueryTriggerInteraction.Collide);
 
             for (int i = 0; i < foundColliders; i++) {
                 Crop cropScript;

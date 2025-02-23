@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public enum DeathType {
     EnemyDeath,
 }
 
+[DefaultExecutionOrder(-1001)]
 public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
@@ -23,6 +25,8 @@ public class GameControl : MonoBehaviour
     [SerializeField] private float spawnRateRiseFactor = 25f;
     [SerializeField] int[] waveStarts;
     private bool playerIsDead = false;
+
+    public event Action<bool> OnPaused;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake() {
@@ -59,6 +63,7 @@ public class GameControl : MonoBehaviour
     public void TogglePause() {
         if (!pausingEnabled) {
             paused = false;
+            OnPaused?.Invoke(paused);
             return;
         }
         paused = !paused;
@@ -73,6 +78,7 @@ public class GameControl : MonoBehaviour
             Cursor.visible = false;
             Time.timeScale = 1;
         }
+        OnPaused?.Invoke(paused);
     }
 
     public Slider sensitivitySlider;

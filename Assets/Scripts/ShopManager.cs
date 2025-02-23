@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour
@@ -13,9 +15,14 @@ public class ShopManager : MonoBehaviour
     private List<SOPlaceable> crops;
     private List<SOPlaceable> buildings;
 
+    private List<RaycasterWorld> worldRaycasters;
+
     private void OnEnable()
     {
         PopulatePlaceableLists();
+
+        worldRaycasters ??= GetComponentsInChildren<RaycasterWorld>().ToList();
+        GameControl.instance.OnPaused += OnPaused;
         
         cropShopItems = new ShopItem[10];
         for (int i = 0; i < cropShopItems.Length; i++)
@@ -42,6 +49,19 @@ public class ShopManager : MonoBehaviour
             {
                 buildingShopItems[i].gameObject.SetActive(false);
             }
+        }
+    }
+
+    private void OnDisable()
+    {
+        GameControl.instance.OnPaused -= OnPaused;
+    }
+
+    private void OnPaused(bool paused)
+    {
+        foreach (var worldRaycaster in worldRaycasters)
+        {
+            worldRaycaster.enabled = !paused;
         }
     }
 
