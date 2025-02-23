@@ -5,6 +5,7 @@ public class CameraMovement : MonoBehaviour
 {
 	Vector2 currentLook;
 	private Camera mainCamera;
+	[SerializeField] private Transform cameraFollowTransform;
 
     void Start()
     {
@@ -13,11 +14,13 @@ public class CameraMovement : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    void LateUpdate()
 	{
+		transform.position = cameraFollowTransform.position;
+		if (Time.timeScale < 0.01f) {return;}
 		Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-		mouseInput.x *= SOManager.instance.playerControls.Xsensitivity;
-		mouseInput.y *= SOManager.instance.playerControls.Ysensitivity;
+		mouseInput.x *= SOManager.instance.playerControls.Xsensitivity * GlobalSettings.instance.sensitivityModifier;
+		mouseInput.y *= SOManager.instance.playerControls.Ysensitivity * GlobalSettings.instance.sensitivityModifier;
 
 		currentLook.x += mouseInput.x;
 		currentLook.y = Mathf.Clamp(currentLook.y + mouseInput.y, -90, 90);

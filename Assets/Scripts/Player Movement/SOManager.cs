@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(-1000)]
 public class SOManager : MonoBehaviour
 {
     public static SOManager instance;

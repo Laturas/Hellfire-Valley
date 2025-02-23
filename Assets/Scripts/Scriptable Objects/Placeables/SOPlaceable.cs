@@ -6,6 +6,7 @@ public class SOPlaceable : ScriptableObject
 {
     public string itemName;
     public ItemType type;
+    public ShopLocation shopLocation;
     public int price;
     public Sprite hotbarIcon;
     public GameObject itemPrefab;
@@ -19,4 +20,11 @@ public enum ItemType {
     Default,
     FlowerBed,
     Turret,
+    Sprinkler
+}
+
+public enum ShopLocation
+{
+    Crops,
+    Buildings
 }

@@ -66,6 +66,7 @@ public class Crop : AbstractPlaceable, IInteractable
     private bool needsWater = true;
     public void DisableNeedingWater() {
         needsWater = false;
+        isWatered = true;
         if (waterIcon != null) {
             Destroy(waterIcon);
         }
@@ -106,10 +107,9 @@ public class Crop : AbstractPlaceable, IInteractable
 
     public void WaterThisPlant()
     {
-        if (!enabled) return;
         isWatered = true;
         waterTimer = timeToWater;
-        waterIconScript.DisableIcon();
+        if (waterIconScript) waterIconScript.DisableIcon();
     }
 
     private void SetLevel(int index)

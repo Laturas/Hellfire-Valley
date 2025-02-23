@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &953331680200041014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 12379185915228840}
+  m_Layer: 0
+  m_Name: ShootTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &12379185915228840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953331680200041014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.05, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6663133250344799465}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2098771491724631922
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5527268648019627903}
+  - component: {fileID: 6480675029916276889}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -33,6 +65,22 @@ Transform:
   - {fileID: 5146220106769160130}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6480675029916276889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098771491724631922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39fe2755b959b3f4bbee3b59b236b4cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretType: {fileID: 11400000, guid: 24549b4b8c85f4344878b3f4b8c55842, type: 2}
+  yPivot: {fileID: 5146220106769160130}
+  xPivot: {fileID: 605748572307638999}
+  shootTransform: {fileID: 12379185915228840}
 --- !u!1 &6043126701288573120
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +330,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0, z: 0.465}
   m_LocalScale: {x: 0.39084494, y: 0.18985595, z: 0.46376613}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 12379185915228840}
   m_Father: {fileID: 5559944388247239436}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &544681856294140249

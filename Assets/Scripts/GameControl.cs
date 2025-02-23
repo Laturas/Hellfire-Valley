@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum DeathType {
     BuildingDeath,
@@ -11,17 +11,81 @@ public class GameControl : MonoBehaviour
     public static GameControl instance;
     public Transform playerTransform;
     public Camera playerCamera;
+    public GameObject playerModel;
+    public GameObject deadPlayer;
     public GameObject ui;
-    public int playerHealth {get; private set;}
-    public int playerMoney {get; private set;}
+    [SerializeField] private int startingPlayerMoney;
+    [SerializeField] private int startingPlayerHealth;
+    [field: SerializeField] public int playerHealth {get; private set;}
+    [field: SerializeField] public int playerMoney {get; private set;}
+    private int netWorth;
+    [Header("Spawn Rate Curve")]
+    [field: SerializeField] public float spawnRate {get; private set;}
+    [SerializeField] private float spawnRateRiseFactor = 25f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake() {
         instance = this;
         DontDestroyOnLoad(this);
+
+        playerMoney = startingPlayerMoney;
+        netWorth = startingPlayerMoney;
+        playerHealth = startingPlayerHealth;
+
+        CalculateSpawnRate();
+    }
+    private bool paused = false;
+    private bool pausingEnabled = true;
+    public GameObject pauseScreen;
+    public GameObject hotbar;
+    [SerializeField] bool hurtPlayer = false;
+
+    public void TriggerOnDeathUIUpdates() {
+        hotbar.SetActive(false);
+        pausingEnabled = false;
+        TogglePause(); // Because of the logic this closes the pause screen (maybe not necessary)
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            TogglePause();
+        }
+        CalculateSpawnRate();
+        if (hurtPlayer) {UpdateHealth(-10); hurtPlayer = false;}
+    }
+
+    public void TogglePause() {
+        if (!pausingEnabled) {
+            paused = false;
+            return;
+        }
+        paused = !paused;
+        if (paused) {
+            pauseScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0;
+        } else {
+            pauseScreen.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Time.timeScale = 1;
+        }
+    }
+
+    public Slider sensitivitySlider;
+    public void UpdateSensitivity() {
+        GlobalSettings.instance.sensitivityModifier = sensitivitySlider.value;
+    }
+    public Slider volumeSlider;
+    public void UpdateVolume() {
+        GlobalSettings.instance.volumeModifier = volumeSlider.value;
     }
 
     public bool UpdateMoney(int changeAmount) {
+        if (changeAmount >= 0) {
+            netWorth += changeAmount;
+        }
         playerMoney += changeAmount;
         if (playerMoney >= 0) return true;
         playerMoney -= changeAmount;
@@ -32,8 +96,16 @@ public class GameControl : MonoBehaviour
         playerHealth += changeAmount;
         if (playerHealth <= 0)
         {
-            Debug.LogWarning("PLAYER DIED!!!!");
+            KillPlayer();
         }
+    }
+
+    private void KillPlayer() {
+        deadPlayer.SetActive(true);
+        deadPlayer.transform.position = playerModel.transform.position + new Vector3(0f,0.5f,0f);
+        deadPlayer.transform.rotation = playerCamera.transform.rotation;
+        playerCamera.gameObject.SetActive(false);
+        playerModel.SetActive(false);
     }
 
     public void Die(DeathType deathType, GameObject dyingGameObject) {
@@ -42,4 +114,11 @@ public class GameControl : MonoBehaviour
             case DeathType.EnemyDeath: Destroy(dyingGameObject); break;
         }
     }
+
+    // e^-(sqrt(x)/s)
+    private void CalculateSpawnRate() {
+        float exponent = -Mathf.Sqrt(netWorth) / spawnRateRiseFactor;
+        spawnRate = 1 / Mathf.Exp(exponent);
+    }
+
 }

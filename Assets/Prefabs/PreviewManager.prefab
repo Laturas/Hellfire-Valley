@@ -47,6 +47,7 @@ MonoBehaviour:
   placeableItemSOs:
   - {fileID: 11400000, guid: c8e89c66037aeaa41b4da98fbb022787, type: 2}
   - {fileID: 11400000, guid: 4c2ae560739b3ec419e84f78f1e2e631, type: 2}
+  - {fileID: 11400000, guid: 94162dcf80eb9f341bed99c638abe13a, type: 2}
   greenPreviewMaterial: {fileID: 2100000, guid: 5ccb339d47b72064caec788289a8af3b,
     type: 2}
   redPreviewMaterial: {fileID: 2100000, guid: 72404636c13556d4484bbec846dd89b3, type: 2}

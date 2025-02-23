@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 7953687868399704317}
   - component: {fileID: 6961277954843532898}
   - component: {fileID: 3218379429474716064}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Crop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,13 +407,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sellValue: 5
-  timeToMaturity: 10
+  baseTimeToMaturity: 10
+  timeToWater: 5
   cropLevels:
   - {fileID: 492335303960173518}
   - {fileID: 3701254716075391315}
   - {fileID: 5381597392128025547}
   - {fileID: 7758147051669711042}
   - {fileID: 3202161652184428624}
+  isWatered: 0
+  waterIcon: {fileID: 0}
+  waterIconScript: {fileID: 0}
 --- !u!65 &3218379429474716064
 BoxCollider:
   m_ObjectHideFlags: 0
