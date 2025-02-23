@@ -130,13 +130,19 @@ PrefabInstance:
     - target: {fileID: 1553399560232298141, guid: 680876881b9141547b4b51b99ec294e5,
         type: 3}
       propertyPath: placeables.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1553399560232298141, guid: 680876881b9141547b4b51b99ec294e5,
         type: 3}
       propertyPath: 'placeables.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 94162dcf80eb9f341bed99c638abe13a,
+        type: 2}
+    - target: {fileID: 1553399560232298141, guid: 680876881b9141547b4b51b99ec294e5,
+        type: 3}
+      propertyPath: 'placeables.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c2b6684f7813324468fcd6396fb6bb65,
         type: 2}
     - target: {fileID: 2287902194659176097, guid: 680876881b9141547b4b51b99ec294e5,
         type: 3}

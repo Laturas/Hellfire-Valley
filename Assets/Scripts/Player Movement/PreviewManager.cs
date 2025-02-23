@@ -106,6 +106,12 @@ public class PreviewManager : MonoBehaviour
         {
             meshRenderer.materials = new Material[] { previewMaterial };
         }
+        
+        var skinnedMeshRenderers = previewObject.GetAllNestedComponentsOfType<SkinnedMeshRenderer>();
+        foreach (var skinnedMeshRenderer in skinnedMeshRenderers)
+        {
+            skinnedMeshRenderer.materials = new Material[] { previewMaterial };
+        }
 
         return previewObject;
     }

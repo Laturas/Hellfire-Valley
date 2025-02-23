@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779eac0f15c4d144184d6cd253179205, type: 3}
+  m_Name: SprinklerTower
+  m_EditorClassIdentifier: 
+  itemName: Sprinkler
+  type: 3
+  shopLocation: 1
+  price: 12
+  hotbarIcon: {fileID: 21300000, guid: 197eab433d402894e8a7bcb4d7d5a610, type: 3}
+  itemPrefab: {fileID: 781816120322342444, guid: 48c83133cf3661d49b78aba0eb9f3279,
+    type: 3}
+  snapType: 0
+  placeableAnywhere: 1
+  health: 100
+  targetable: 1
