@@ -1,6 +1,11 @@
 using System;
 using UnityEngine;
 
+public enum DeathType {
+    BuildingDeath,
+    EnemyDeath,
+}
+
 public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
@@ -22,5 +27,12 @@ public class GameControl : MonoBehaviour
     }
     public void UpdateHealth(int changeAmount) {
         playerMoney += changeAmount;
+    }
+
+    public void Die(DeathType deathType, GameObject dyingGameObject) {
+        switch (deathType) {
+            case DeathType.BuildingDeath: Destroy(dyingGameObject); break;
+            case DeathType.EnemyDeath: Destroy(dyingGameObject); break;
+        }
     }
 }
