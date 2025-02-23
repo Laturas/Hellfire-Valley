@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterIcon: {fileID: 161793331708824973, guid: 9569d026238ebf24ca2c08fd64484e2d,
     type: 3}
-  harvestIcon: {fileID: 0}
-  healthIcon: {fileID: 0}
+  harvestIcon: {fileID: 161793331708824973, guid: 61c8c82254820ca43a61a3c7b2125011,
+    type: 3}
+  healthIcon: {fileID: 161793331708824973, guid: 8ad3de45e47710144aa13386de6e847a,
+    type: 3}

@@ -59,6 +59,7 @@ public class Crop : MonoBehaviour, IInteractable
             waterIcon = null;
             waterIconScript = null;
             harvestIcon = Instantiate(SOManager.instance.hudIcons.harvestIcon, GameControl.instance.ui.transform);
+            harvestIcon.GetComponent<WorldSpaceHudIcon>().IconInit(transform);
         }
     }
 
@@ -82,6 +83,7 @@ public class Crop : MonoBehaviour, IInteractable
         if (isMature) {
             GameControl.instance.UpdateMoney(sellValue);
             Debug.Log("Sold! Money = " + GameControl.instance.playerMoney);
+            Destroy(harvestIcon);
             Destroy(gameObject);
         }
     }
