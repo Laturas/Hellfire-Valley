@@ -6,12 +6,18 @@ public enum Team {
     EnemyTeam,
 }
 
+public enum Variant {
+    Vanilla,
+    Apparition
+}
+
 public class Damageable : MonoBehaviour
 {
     [SerializeField] private int defaultHealth;
     [SerializeField] private bool thisIsPlayer;
     private int health;
     [field: SerializeField] public Team team {get; private set;}
+    [field: SerializeField] public Variant variant {get; private set;}
 
     public void Start()
     {
@@ -27,7 +33,15 @@ public class Damageable : MonoBehaviour
         health -= amount;
         Debug.Log(team + "" + health);
         if (health <= 0) {
-            GameControl.instance.Die(DeathType.BuildingDeath, gameObject);
+            if (variant == Variant.Apparition) {
+                GameControl.instance.Die(DeathType.EnemyDeathApparition, gameObject);
+            }
+            else if (team == Team.FriendlyTeam) {
+                GameControl.instance.Die(DeathType.BuildingDeath, gameObject);
+            }
+            else if (team == Team.EnemyTeam) {
+                GameControl.instance.Die(DeathType.EnemyDeath, gameObject);
+            }
         }
     }
 }

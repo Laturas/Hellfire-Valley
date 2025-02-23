@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e33250080a1c5144a33a50f3b4c205b, type: 3}
-  m_Name: Nailgun
+  m_Name: ScrapRepeater
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
-  rotateSpeed: 5
-  fireDelay: 1
-  range: 15
-  bulletPrefab: {fileID: 9021131116994794464, guid: 07e4c86140410ec4e8a0bd11a3a7209c,
+  rotateSpeed: 7
+  fireDelay: 3
+  range: 30
+  bulletPrefab: {fileID: 9021131116994794464, guid: a557530e18344df4a9c95e08b953b3b2,
     type: 3}

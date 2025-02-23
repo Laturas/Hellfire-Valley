@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public enum DeathType {
     BuildingDeath,
     EnemyDeath,
+    EnemyDeathApparition
 }
 
 [DefaultExecutionOrder(-1001)]
@@ -120,8 +121,17 @@ public class GameControl : MonoBehaviour
 
     public void Die(DeathType deathType, GameObject dyingGameObject) {
         switch (deathType) {
-            case DeathType.BuildingDeath: Destroy(dyingGameObject); break;
-            case DeathType.EnemyDeath: Destroy(dyingGameObject); break;
+            case DeathType.EnemyDeathApparition:
+            Debug.Log("a");
+            Instantiate(SOManager.instance.enemyTypes[0].prefab, dyingGameObject.transform.position, Quaternion.identity); 
+            Destroy(dyingGameObject); 
+            break;
+            case DeathType.BuildingDeath: 
+            Destroy(dyingGameObject); 
+            break;
+            case DeathType.EnemyDeath: 
+            Destroy(dyingGameObject); 
+            break;
         }
     }
 

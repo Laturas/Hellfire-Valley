@@ -8,6 +8,7 @@ public class SOManager : MonoBehaviour
     public SOBuildings buildingPrefabs;
     public SOPlaceable[] placeables;
     public SOTurret[] turretTypes;
+    public SOEnemy[] enemyTypes;
     public SOWorldHudIcons hudIcons;
 
     void Awake()

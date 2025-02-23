@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 1982208843074412007}
   - component: {fileID: 193942958692699090}
   m_Layer: 12
-  m_Name: Nailgun
+  m_Name: Scrap Repeater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fe2755b959b3f4bbee3b59b236b4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretType: {fileID: 11400000, guid: f3c26384551ea684495995a1eef4cd4b, type: 2}
+  turretType: {fileID: 11400000, guid: bc078f31a9e2bf742b7fb82f8bf96a4b, type: 2}
   yPivot: {fileID: 6801729426771362085}
   xPivot: {fileID: 8454723365230658116}
   shootTransform: {fileID: 5790034025364584567}
@@ -304,6 +304,7 @@ MonoBehaviour:
   defaultHealth: 50
   thisIsPlayer: 0
   <team>k__BackingField: 0
+  <variant>k__BackingField: 0
 --- !u!135 &193942958692699090
 SphereCollider:
   m_ObjectHideFlags: 0

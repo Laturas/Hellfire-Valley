@@ -149,8 +149,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 6
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   attackCooldown: 2
   baseMeleeDamage: 5
   agentRedirectCooldown: 0
-  awarenessRadius: 10
+  awarenessRadius: 30
 --- !u!114 &2374233567782830141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b63d28209502643990c356635f475f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultHealth: 100
+  defaultHealth: 15
   thisIsPlayer: 0
   <team>k__BackingField: 1
+  <variant>k__BackingField: 0
