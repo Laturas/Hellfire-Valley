@@ -278,25 +278,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 519763420398640526, guid: 1bd64783af25fa742a4f45cf99123524,
-        type: 3}
-      propertyPath: pauseScreen
-      value: 
-      objectReference: {fileID: 1357318572}
     - target: {fileID: 787560755199636663, guid: 1bd64783af25fa742a4f45cf99123524,
         type: 3}
       propertyPath: m_Name
       value: Game Control Singleton
-      objectReference: {fileID: 0}
-    - target: {fileID: 2222569553176821824, guid: 1bd64783af25fa742a4f45cf99123524,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499895858275895009, guid: 1bd64783af25fa742a4f45cf99123524,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4836073421075706697, guid: 1bd64783af25fa742a4f45cf99123524,
         type: 3}
@@ -347,21 +332,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5225884017521056451, guid: 1bd64783af25fa742a4f45cf99123524,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5387755008295737525, guid: 1bd64783af25fa742a4f45cf99123524,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8819917866491072364, guid: 1bd64783af25fa742a4f45cf99123524,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -509,12 +479,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 86764f617419fd9428622ed400a0d57f, type: 2}
   timer: 0
---- !u!1 &1357318572 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5387755008295737525, guid: 1bd64783af25fa742a4f45cf99123524,
-    type: 3}
-  m_PrefabInstance: {fileID: 567972663}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1482251653
 PrefabInstance:
   m_ObjectHideFlags: 0

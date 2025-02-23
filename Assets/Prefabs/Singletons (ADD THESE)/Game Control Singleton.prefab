@@ -131,7 +131,7 @@ MonoBehaviour:
   <playerMoney>k__BackingField: 100
   <spawnRate>k__BackingField: 0
   spawnRateRiseFactor: 50
-  pauseScreen: {fileID: 0}
+  pauseScreen: {fileID: 5387755008295737525}
 --- !u!1 &984622234906429250
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +774,7 @@ RectTransform:
   m_Father: {fileID: 3790655297587775183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -849,7 +849,7 @@ RectTransform:
   m_Father: {fileID: 1048250397464222404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1216,7 +1216,7 @@ RectTransform:
   m_Father: {fileID: 4459533166471205570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1291,7 +1291,7 @@ RectTransform:
   m_Father: {fileID: 3023004787037528007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1875,6 +1875,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3981710687578069162, guid: e4373dda0040afb4b9c90264ecb1fedb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5187855703194513098, guid: e4373dda0040afb4b9c90264ecb1fedb,
         type: 3}
       propertyPath: m_Name
@@ -1904,6 +1909,12 @@ PrefabInstance:
 --- !u!1 &4498328881050936442 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4893583400487674981, guid: e4373dda0040afb4b9c90264ecb1fedb,
+    type: 3}
+  m_PrefabInstance: {fileID: 9044572085895757855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5387755008295737525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3981710687578069162, guid: e4373dda0040afb4b9c90264ecb1fedb,
     type: 3}
   m_PrefabInstance: {fileID: 9044572085895757855}
   m_PrefabAsset: {fileID: 0}
