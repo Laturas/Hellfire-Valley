@@ -19,12 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 bannedGroundNormal;
 
-    //Cooldowns
-    bool canJump = true;
-
     //States
-    bool jump;
-    bool crouched;
+    bool crouched => Input.GetKey(KeyCode.LeftControl);
     Mode mode = Flying;
 
     [Header("Initialization")]
@@ -44,20 +40,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (rb.linearDamping > 0.2f) {rb.linearDamping = 0f;}
+        //if (rb.linearDamping > 0.2f) {rb.linearDamping = 0f;}
         rb.useGravity = mode != Walking;
 
         dir = Direction();
-        if (dir.magnitude < 0.1f && getPlayerSpeed() < 0.5f) {rb.linearDamping = 11f;}
+        //if (dir.magnitude < 0.1f && getPlayerSpeed() < 0.5f) {rb.linearDamping = 11f;}
 
-        crouched = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C);
-        jump = Input.GetKeyDown(KeyCode.Space) ? true : jump;
+        if (activeCoyoteTime >= 0) {
+            if (Input.GetKey(KeyCode.Space)) {Jump(); return;}
+            activeCoyoteTime -= 0.1f;
+        }
     }
 
     void FixedUpdate()
     {
-        crouched = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C);
-
         switch (mode)
         {
             case Walking:
@@ -73,17 +69,15 @@ public class PlayerMovement : MonoBehaviour
             if (0.6f < col.height - Time.deltaTime)
             {
                 col.height = Mathf.Max(0.6f, col.height - Time.deltaTime * 10f);
-                if (mode != Flying) col.transform.position += new Vector3(0, -Time.deltaTime * 2f, 0);
+                if (mode != Flying) col.transform.position += new Vector3(0, -Time.deltaTime * 5f, 0);
             }
             current_player_speed = 0.3f * settings.playerSpeed;
         }
         else
         {
-            col.height = Mathf.Min(1.5f, col.height + Time.deltaTime * 5f);
+            col.height = Mathf.Min(2f, col.height + Time.deltaTime * 5f);
             current_player_speed = settings.playerSpeed;
         }
-
-        jump = false;
     }
 
     private Vector3 Direction()
@@ -140,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
     void EnterWalking()
     {
-        if (mode == Walking || !canJump) {return;}
+        if (mode == Walking) {return;}
 
         if (mode == Flying && crouched)
         {
@@ -157,10 +151,12 @@ public class PlayerMovement : MonoBehaviour
         }
         mode = Flying;
     }
+    private float projectTimer;
 
     void Walk(Vector3 intended_direction, float maxSpeed, float acceleration)
     {
-        if (jump && canJump) {Jump(); return;}
+        activeCoyoteTime = settings.coyoteTimer;
+        //if (jump) {Jump(); return;}
 
 		intended_direction = intended_direction.normalized;
 
@@ -174,24 +170,42 @@ public class PlayerMovement : MonoBehaviour
 
 		direction = Vector3.ProjectOnPlane(direction, groundNormal);
 		rb.AddForce(direction, ForceMode.Acceleration);
+        if (projectTimer <= 0) {
+            rb.linearVelocity = Vector3.ProjectOnPlane(rb.linearVelocity, groundNormal);
+        } else {projectTimer -= 0.1f;}
     }
 
-    void AirMove(Vector3 wishDir, float maxSpeed, float acceleration)
+    [SerializeField] private float activeCoyoteTime;
+
+    void AirMove(Vector3 intended_direction, float maxSpeed, float acceleration)
     {
-        float projVel = Vector3.Dot(new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z), wishDir); // Vector projection of Current velocity onto accelDir.
-        float accelVel = acceleration * Time.deltaTime; // Accelerated velocity in direction of movment
+        intended_direction = intended_direction.normalized;
 
-        // If necessary, truncate the accelerated velocity so the vector projection does not exceed max_velocity
-        if (projVel + accelVel > maxSpeed)
-            accelVel = Mathf.Max(0f, maxSpeed - projVel);
+		Vector3 direction = new(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+		if (direction.magnitude + acceleration > maxSpeed)
+            acceleration = Mathf.Max(0f, maxSpeed - direction.magnitude);
+		direction = intended_direction * maxSpeed - direction;
 
-        rb.AddForce(wishDir.normalized * accelVel, ForceMode.VelocityChange);
+		//if (direction.magnitude < 0.5f) acceleration *= direction.magnitude / 0.5f;
+
+		direction = direction.normalized * acceleration;
+
+		rb.AddForce(direction, ForceMode.Acceleration);
+
+        // float projVel = Vector3.Dot(new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z), intended_direction); // Vector projection of Current velocity onto accelDir.
+        // float accelVel = acceleration / 100f; // Accelerated velocity in direction of movment
+
+        // // If necessary, truncate the accelerated velocity so the vector projection does not exceed max_velocity
+        // if (projVel + accelVel > maxSpeed)
+        //     accelVel = Mathf.Max(0f, maxSpeed - projVel);
+
+        //rb.AddForce(intended_direction.normalized * accelVel, ForceMode.Acceleration);
     }
 
     void Jump()
-    {
-        if (!canJump) {return;}
-        
+    {   
+        projectTimer = settings.stopProjectionTimer;
+        activeCoyoteTime = -1f;
         float upForce = Mathf.Clamp(settings.jumpPower - rb.linearVelocity.y, 0, Mathf.Infinity);
         switch (mode)
         {

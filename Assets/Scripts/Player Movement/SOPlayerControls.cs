@@ -13,6 +13,8 @@ public class SOPlayerControls : ScriptableObject
     public float playerAcceleration;
     public float playerAirAcceleration;
     public float jumpPower;
+    public float stopProjectionTimer = 0.1f;
+    public float coyoteTimer = 0.3f;
 
     public float wallFloorBarrierAngle = 60f;
 

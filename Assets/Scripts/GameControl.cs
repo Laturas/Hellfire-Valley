@@ -11,7 +11,6 @@ public class GameControl : MonoBehaviour
     public static GameControl instance;
     public Transform playerTransform;
     public Camera playerCamera;
-    public GameObject playerModel;
     public GameObject deadPlayer;
     public GameObject ui;
     [SerializeField] private int startingPlayerMoney;
@@ -38,6 +37,7 @@ public class GameControl : MonoBehaviour
     private bool pausingEnabled = true;
     public GameObject pauseScreen;
     public GameObject hotbar;
+    public int currentWave {get; private set;}
     [SerializeField] bool hurtPlayer = false;
 
     public void TriggerOnDeathUIUpdates() {
@@ -102,10 +102,10 @@ public class GameControl : MonoBehaviour
 
     private void KillPlayer() {
         deadPlayer.SetActive(true);
-        deadPlayer.transform.position = playerModel.transform.position + new Vector3(0f,0.5f,0f);
+        deadPlayer.transform.position = playerTransform.position + new Vector3(0f,0.5f,0f);
         deadPlayer.transform.rotation = playerCamera.transform.rotation;
         playerCamera.gameObject.SetActive(false);
-        playerModel.SetActive(false);
+        playerTransform.gameObject.SetActive(false);
     }
 
     public void Die(DeathType deathType, GameObject dyingGameObject) {
@@ -119,6 +119,7 @@ public class GameControl : MonoBehaviour
     private void CalculateSpawnRate() {
         float exponent = -Mathf.Sqrt(netWorth) / spawnRateRiseFactor;
         spawnRate = 1 / Mathf.Exp(exponent);
+        
     }
 
 }

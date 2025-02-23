@@ -9,7 +9,7 @@ public enum Team {
 public class Damageable : MonoBehaviour
 {
     [SerializeField] private int defaultHealth;
-    private bool thisIsPlayer;
+    [SerializeField] private bool thisIsPlayer;
     private int health;
     [field: SerializeField] public Team team {get; private set;}
 

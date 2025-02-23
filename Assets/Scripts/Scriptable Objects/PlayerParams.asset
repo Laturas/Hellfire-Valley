@@ -19,6 +19,8 @@ MonoBehaviour:
   playerAcceleration: 20
   playerAirAcceleration: 20
   jumpPower: 3.75
+  stopProjectionTimer: 0.2
+  coyoteTimer: 1
   wallFloorBarrierAngle: 60
   placeDistance: 4
   placeCheckRadius: 3
