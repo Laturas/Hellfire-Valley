@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     //States
     bool jump;
     bool crouched;
-    bool grounded;
     Mode mode = Flying;
 
     [Header("Initialization")]
@@ -118,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
 			}
         }
     }
-    private static string ignoreWallrun = "NoWallrun";
     void OnCollisionStay(Collision collision)
     {
         int count = collision.contactCount;
@@ -133,14 +131,8 @@ public class PlayerMovement : MonoBehaviour
 
             EnterWalking();
             
-            grounded = true;
             groundNormal = contact.normal;
             return;
-        }
-
-        if (VectorToGround().magnitude > 0.2f)
-        {
-            grounded = false;
         }
     }
 
@@ -159,7 +151,6 @@ public class PlayerMovement : MonoBehaviour
 
     void EnterFlying(bool wishFly = false)
     {
-        grounded = false;
         if (mode == Flying)
         {
             return;
@@ -220,21 +211,6 @@ public class PlayerMovement : MonoBehaviour
         float angle = -Vector3.Angle(Vector3.up, normal);
         rotation = Quaternion.AngleAxis(angle, rotDir);
         return rotation * vect;
-    }
-
-    float WallrunCameraAngle()
-    {
-        Vector3 rotDir = Vector3.ProjectOnPlane(groundNormal, Vector3.up);
-        Quaternion rotation = Quaternion.AngleAxis(-90f, Vector3.up);
-        rotDir = rotation * rotDir;
-        
-        float angle = Vector3.SignedAngle(Vector3.up, groundNormal, 
-            Quaternion.AngleAxis(90f, rotDir) * groundNormal);
-
-        angle = (angle - 90) / 180;
-        Vector3 normal = new Vector3(groundNormal.x, 0, groundNormal.z);
-
-        return Vector3.Cross(transform.forward, normal).y * angle;
     }
 
     
