@@ -1,18 +1,25 @@
-using System;
 using System.Collections.Generic;
+using Unity.Entities.UniversalDelegates;
 using UnityEngine;
 
 public class Crop : MonoBehaviour, IInteractable
 {
     public int sellValue;
-    [SerializeField] private float timeToMaturity = 10f;
+    [SerializeField] private float baseTimeToMaturity = 10f;
+    private float timeToMaturity => baseTimeToMaturity / growthModifier;
     [SerializeField] private float timeToWater = 5f;
 
     [SerializeField] private List<GameObject> cropLevels;
 
     private float timer = 0f;
 
-    private float timeBetweenLevels = 1f;
+    private float growthModifier = 1f;
+    public void SetGrowthModifier(float newGrowthModifier) {
+        if (newGrowthModifier >= growthModifier) {
+            growthModifier = newGrowthModifier;
+        }
+    }
+    private float timeBetweenLevels => timeToMaturity / (cropLevels.Count - 1);
 
     private int levelIndex = 0;
 
@@ -20,16 +27,13 @@ public class Crop : MonoBehaviour, IInteractable
     private float waterTimer;
 
     public bool isWatered;
-    GameObject waterIcon;
-    WorldSpaceHudIcon waterIconScript;
+    [SerializeField] GameObject waterIcon;
+    [SerializeField] WorldSpaceHudIcon waterIconScript;
     GameObject harvestIcon;
     
     private void OnEnable()
     {
-        waterIcon = Instantiate(SOManager.instance.hudIcons.waterIcon, GameControl.instance.ui.transform);
-        waterIconScript = waterIcon.GetComponent<WorldSpaceHudIcon>();
-        waterIconScript.IconInit(transform);
-        timeBetweenLevels = timeToMaturity / (cropLevels.Count - 1);
+        // These have to be present in OnEnable() and not Start() otherwise the models are not visible
         SetLevel(0);
     }
 
@@ -38,26 +42,63 @@ public class Crop : MonoBehaviour, IInteractable
         
     }
 
+    void Start() {
+        // DO NOT put these in OnEnable(). It breaks everything.
+        waterIcon = Instantiate(SOManager.instance.hudIcons.waterIcon, GameControl.instance.ui.transform);
+        waterIconScript = waterIcon.GetComponent<WorldSpaceHudIcon>();
+        waterIconScript.IconInit(transform);
+        InformTowers();
+    }
+
+    private const float informRadius = 15f;
+    private void InformTowers() {
+        Collider[] towers = Physics.OverlapSphere(transform.position, informRadius, 1 << 11, QueryTriggerInteraction.Collide);
+
+        foreach (Collider towerCollider in towers) {
+            IAOEBuff tower;
+            if (towerCollider.TryGetComponent(out tower)) {
+                tower.Inform(this);
+            }
+
+        }
+    }
+
+    private bool needsWater = true;
+    public void DisableNeedingWater() {
+        needsWater = false;
+        if (waterIcon != null) {
+            Destroy(waterIcon);
+        }
+    }
+
     private void Update()
     {
-        if (!isWatered) return;
-        waterTimer -= Time.deltaTime;
-        if (waterTimer <= 0) {
-            waterIconScript.EnableIcon();
-            isWatered = false;
-        }
         if (isMature) return;
+
+        if (needsWater) {
+            if (!isWatered) {
+                return;
+            }
+            waterTimer -= Time.deltaTime;
+            if (waterTimer <= 0) {
+                waterIconScript.EnableIcon();
+                isWatered = false;
+            }
+        }
+
+
         timer += Time.deltaTime;
-        if (!(timer >= timeBetweenLevels)) return;
+        if (timer < timeBetweenLevels) return;
         timer -= timeBetweenLevels;
-        levelIndex++;
-        SetLevel(levelIndex);
+        SetLevel(levelIndex + 1);
         if (levelIndex == cropLevels.Count - 1) isMature = true;
 
-        if (isMature && waterIcon != null) {
-            Destroy(waterIcon);
-            waterIcon = null;
-            waterIconScript = null;
+        if (isMature) {
+            if (waterIcon != null) {
+                Destroy(waterIcon);
+                waterIcon = null;
+                waterIconScript = null;
+            }
             harvestIcon = Instantiate(SOManager.instance.hudIcons.harvestIcon, GameControl.instance.ui.transform);
             harvestIcon.GetComponent<WorldSpaceHudIcon>().IconInit(transform);
         }
@@ -71,7 +112,7 @@ public class Crop : MonoBehaviour, IInteractable
 
     private void SetLevel(int index)
     {
-
+        levelIndex = index;
         for (var i = 0; i < cropLevels.Count; i++)
         {
             cropLevels[i].SetActive(i == index);
