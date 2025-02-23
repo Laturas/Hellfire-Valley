@@ -865,6 +865,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1553399560232298141, guid: 680876881b9141547b4b51b99ec294e5,
+        type: 3}
+      propertyPath: placeables.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553399560232298141, guid: 680876881b9141547b4b51b99ec294e5,
+        type: 3}
+      propertyPath: 'placeables.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 975911fefe0e4ed43b109af7dff34e21,
+        type: 2}
     - target: {fileID: 2287902194659176097, guid: 680876881b9141547b4b51b99ec294e5,
         type: 3}
       propertyPath: m_Name

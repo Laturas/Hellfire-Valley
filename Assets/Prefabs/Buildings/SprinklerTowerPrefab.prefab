@@ -79,6 +79,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c1556d1ebc249d44fb6559c3086e2c36,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c1556d1ebc249d44fb6559c3086e2c36,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c1556d1ebc249d44fb6559c3086e2c36,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c1556d1ebc249d44fb6559c3086e2c36,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.1037664
       objectReference: {fileID: 0}
@@ -174,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultHealth: 100
+  thisIsPlayer: 0
   <team>k__BackingField: 0
 --- !u!95 &3296414588288780391
 Animator:
