@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/IsekaiScene.unity
+    guid: d1d9641fe26954c47a645b720da0fa68
+  - enabled: 1
+    path: Assets/Scenes/CropScene.unity
+    guid: 0480e1cd985175348aef75d19f76e191
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: aa122f0b7b9cc7947b4e0e72d0b1c986,
       type: 2}
