@@ -49,7 +49,10 @@ MonoBehaviour:
   placeables:
   - {fileID: 11400000, guid: 4c2ae560739b3ec419e84f78f1e2e631, type: 2}
   - {fileID: 11400000, guid: c8e89c66037aeaa41b4da98fbb022787, type: 2}
-  turretTypes: []
+  turretTypes:
+  - {fileID: 11400000, guid: f3c26384551ea684495995a1eef4cd4b, type: 2}
+  - {fileID: 11400000, guid: bc078f31a9e2bf742b7fb82f8bf96a4b, type: 2}
+  - {fileID: 11400000, guid: 615b7ed7832c87b488e92c5ca0b13211, type: 2}
   enemyTypes:
   - {fileID: 11400000, guid: 5bc285427c9292b4c9e4047e21269cca, type: 2}
   hudIcons: {fileID: 11400000, guid: 8923d77faf720f940880e025e7a6a8ec, type: 2}
