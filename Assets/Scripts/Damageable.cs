@@ -9,7 +9,7 @@ public class Damageable : MonoBehaviour
 {
     [SerializeField] private int defaultHealth;
     private int health;
-    [SerializeField] public Team thisTeam;
+    [SerializeField] public Team team {get; private set;}
 
     public void Start()
     {
@@ -17,10 +17,10 @@ public class Damageable : MonoBehaviour
     }
 
     public void DealDamage(int amount, Team attackerTeam) {
-        if (attackerTeam == thisTeam) {return;}
+        if (attackerTeam == team) {return;}
         health -= amount;
         if (health <= 0) {
-            // Die
+            GameControl.instance.Die(DeathType.BuildingDeath, gameObject);
         }
     }
 }
