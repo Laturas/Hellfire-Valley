@@ -7,7 +7,7 @@ public class HotbarItem : MonoBehaviour
 {
     [SerializeField] private Image hotbarIconImage;
     [SerializeField] private TextMeshProUGUI hotbarItemCount;
-    private SOShopItem shopItem;
+    private SOPlaceable shopItem;
     private int numItems;
 
     private void OnEnable()
@@ -42,7 +42,7 @@ public class HotbarItem : MonoBehaviour
         return numItems;
     }
 
-    public void SetShopItem(SOShopItem item)
+    public void SetShopItem(SOPlaceable item)
     {
         shopItem = item;
     }
@@ -53,7 +53,7 @@ public class HotbarItem : MonoBehaviour
         UpdateDisplay();
     }
 
-    public SOShopItem GetShopItem()
+    public SOPlaceable GetShopItem()
     {
         return shopItem;
     }
@@ -65,7 +65,7 @@ public class HotbarItem : MonoBehaviour
 
         if (numItems != 0 && shopItem)
         {
-            hotbarIconImage.sprite = shopItem.hotbarItem;
+            hotbarIconImage.sprite = shopItem.hotbarIcon;
             hotbarItemCount.text = numItems.ToString();   
         }
     }

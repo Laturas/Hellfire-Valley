@@ -49,7 +49,7 @@ public class HotbarManager : MonoBehaviour
         hotbarSelectionBox.transform.localPosition = Vector3.zero;
     }
 
-    public SOShopItem GetCurrentlySelectedItem()
+    public SOPlaceable GetCurrentlySelectedItem()
     {
         return hotbarItems[hotbarSelectionIndex].GetShopItem();
     }
@@ -59,7 +59,7 @@ public class HotbarManager : MonoBehaviour
     /// </summary>
     /// <param name="shopItem"></param>
     /// <returns>If the add was successful</returns>
-    public bool AddItem(SOShopItem shopItem)
+    public bool AddItem(SOPlaceable shopItem)
     {
         var item = GetAppropriateHotbarItem(shopItem);
         if (item == null) return false;
@@ -78,14 +78,14 @@ public class HotbarManager : MonoBehaviour
         return true;
     }
 
-    public bool RemoveItem(SOShopItem shopItem)
+    public bool RemoveItem(SOPlaceable shopItem)
     {
         var item = hotbarItems.FirstOrDefault(it => it.IsOfType(shopItem.type) && !it.IsEmpty());
         if (item) item.DecreaseCount();
         return item != null;
     }
 
-    private HotbarItem GetAppropriateHotbarItem(SOShopItem shopItem)
+    private HotbarItem GetAppropriateHotbarItem(SOPlaceable shopItem)
     {
         HotbarItem item = null;
         // First we see if the player already has an item of this type, if so, add it there

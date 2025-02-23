@@ -51,3 +51,5 @@ MonoBehaviour:
   placeables:
   - {fileID: 11400000, guid: 4c2ae560739b3ec419e84f78f1e2e631, type: 2}
   - {fileID: 11400000, guid: c8e89c66037aeaa41b4da98fbb022787, type: 2}
+  turretTypes: []
+  hudIcons: {fileID: 11400000, guid: 8923d77faf720f940880e025e7a6a8ec, type: 2}

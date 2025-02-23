@@ -732,6 +732,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop Sign
       objectReference: {fileID: 0}
+    - target: {fileID: 7229527490269551817, guid: 4749035699f626c42be6bebd0fafde44,
+        type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: c8e89c66037aeaa41b4da98fbb022787,
+        type: 2}
     - target: {fileID: 8140198944191701613, guid: 4749035699f626c42be6bebd0fafde44,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -810,7 +816,7 @@ PrefabInstance:
         type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 70a8408e7be4d8b40a0f1bc2a91f51ae,
+      objectReference: {fileID: 11400000, guid: 4c2ae560739b3ec419e84f78f1e2e631,
         type: 2}
     - target: {fileID: 8140198944191701613, guid: 4749035699f626c42be6bebd0fafde44,
         type: 3}

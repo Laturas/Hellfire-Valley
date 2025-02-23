@@ -83,7 +83,7 @@ public class PreviewManager : MonoBehaviour
 
     private GameObject GeneratePreviewWithMaterial(SOPlaceable item, Material previewMaterial)
     {
-        var previewObject = Instantiate(item.prefab);
+        var previewObject = Instantiate(item.itemPrefab);
         
         // Disable all scripts
         var scripts = previewObject.GetAllNestedScripts();

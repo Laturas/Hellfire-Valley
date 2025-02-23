@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // This thing should be placed on the camera.
@@ -5,30 +6,34 @@ public class ThingPlacer : MonoBehaviour
 {
     private bool canPlace;
     [SerializeField] private SOPlaceable currentPlaceable;
-    Transform objectToPlaceTransform = null;
-    HotbarManager hotbar;
+    private HotbarManager hotbar;
     private PreviewManager previewManager;
-
+    private Collider[] overlaps;
     private Vector3 placePosition = Vector3.zero;
     
-    void Start() {
+    private void Start() {
         canPlace = false;
         overlaps = new Collider[10];
         hotbar = FindAnyObjectByType<HotbarManager>();
         previewManager = FindFirstObjectByType<PreviewManager>();
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     public void ChangeObjectToPlace(SOPlaceable placeThisThing) {
-        // currentPlaceable = placeThisThing;
-        // if (objectToPlaceTransform != null) {
-        //     Destroy(objectToPlaceTransform.gameObject);
-        //     objectToPlaceTransform = Instantiate(currentPlaceable.prefab).transform;
-        // }
         currentPlaceable = placeThisThing;
         previewManager.PlacePreview(placeThisThing, transform.position, true);
     }
 
-    void Update() {
+    private void Update() {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             ChangeObjectToPlace(SOManager.instance.placeables[0]);
         }
@@ -49,33 +54,17 @@ public class ThingPlacer : MonoBehaviour
                 if (canPlace) {
                     //objectToPlaceTransform = null;
                     previewManager.DisablePreview();
-                    Instantiate(currentPlaceable.prefab, placePosition, Quaternion.identity);
+                    Instantiate(currentPlaceable.itemPrefab, placePosition, Quaternion.identity);
                     canPlace = false;
                 }
             }
-
-            // if (objectToPlaceTransform == null) {
-            //     objectToPlaceTransform = Instantiate(currentPlaceable.prefab).transform;
-            // } else {
-                // if (canPlace) {
-                //     //objectToPlaceTransform = null;
-                //     previewManager.DisablePreview();
-                //     canPlace = false;
-                // }
-            //}
         }
         if (previewManager.IsPreviewActive() && currentPlaceable.placeableAnywhere) {
             PlacementLogicAnywhere();
         } else if (previewManager.IsPreviewActive()){
             PlacementLogicSnap();
         }
-        //if (objectToPlaceTransform != null) {
-            
-        //}
     }
-
-    private Collider[] overlaps;
-
     // void OnDrawGizmos()
     // {
     //     float distance = SOManager.instance.playerControls.placeDistance;

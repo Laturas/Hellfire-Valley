@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShopSign : MonoBehaviour, IInteractable
 {
-    public SOShopItem item;
+    public SOPlaceable item;
     private TextMeshPro tmpText;
     private Transform tmpTextTransform;
     public float textHeight = 2f;
