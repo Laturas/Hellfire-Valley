@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Turret : MonoBehaviour
 {
@@ -20,7 +21,15 @@ public class Turret : MonoBehaviour
         }
         if (targetTransform) {
             Track();
-            if (ableToFire) Fire();
+            if (ableToFire) { 
+                if (turretType == SOManager.instance.turretTypes[2]) {
+                    ableToFire = false;
+                    StartCoroutine(burstFire(0.25f));
+                }
+                else {
+                    Fire();
+                }
+            } 
         }
     }
     private void Track() {
@@ -58,6 +67,7 @@ public class Turret : MonoBehaviour
             ableToFire = true;
         });
     }
+
     private void Retarget() {
         int count = Physics.OverlapSphereNonAlloc(transform.position, turretType.range, colliders, 1 << 7, QueryTriggerInteraction.Collide);
         if (count != 0) {
@@ -65,4 +75,24 @@ public class Turret : MonoBehaviour
             targetDamageable = colliders[0].GetComponent<Damageable>();
         }
     }
+
+    IEnumerator burstFire(float duration)
+    {
+            for (int i = 0; i < 3; i++) {
+                yield return new WaitForSeconds(duration);
+                Debug.Log(i);
+                ableToFire = false;
+                var bullet = Instantiate(turretType.bulletPrefab, shootTransform.position, Quaternion.identity);
+                var bulletComponent = bullet.GetComponent<GenericBullet>();
+                bulletComponent.SetTarget(targetDamageable);
+                LeanTween.delayedCall(turretType.fireDelay, () =>
+                {
+                ableToFire = false;
+                }               
+            );         
+        }
+        yield return new WaitForSeconds(turretType.fireDelay);
+        ableToFire = true;
+    }
+
 }
