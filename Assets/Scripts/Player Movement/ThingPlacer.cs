@@ -7,18 +7,25 @@ public class ThingPlacer : MonoBehaviour
     [SerializeField] private SOPlaceable currentPlaceable;
     Transform objectToPlaceTransform = null;
     HotbarManager hotbar;
+    private PreviewManager previewManager;
+
+    private Vector3 placePosition = Vector3.zero;
+    
     void Start() {
         canPlace = false;
         overlaps = new Collider[10];
         hotbar = FindAnyObjectByType<HotbarManager>();
+        previewManager = FindFirstObjectByType<PreviewManager>();
     }
 
     public void ChangeObjectToPlace(SOPlaceable placeThisThing) {
+        // currentPlaceable = placeThisThing;
+        // if (objectToPlaceTransform != null) {
+        //     Destroy(objectToPlaceTransform.gameObject);
+        //     objectToPlaceTransform = Instantiate(currentPlaceable.prefab).transform;
+        // }
         currentPlaceable = placeThisThing;
-        if (objectToPlaceTransform != null) {
-            Destroy(objectToPlaceTransform.gameObject);
-            objectToPlaceTransform = Instantiate(currentPlaceable.prefab).transform;
-        }
+        previewManager.PlacePreview(placeThisThing, transform.position, true);
     }
 
     void Update() {
@@ -28,27 +35,43 @@ public class ThingPlacer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
             ChangeObjectToPlace(SOManager.instance.placeables[1]);
         }
-        if (currentPlaceable == null) {
+        if (!currentPlaceable) {
             return;
         }
         
         if (Input.GetMouseButtonDown(0)) {
-            if (objectToPlaceTransform == null) {
-                objectToPlaceTransform = Instantiate(currentPlaceable.prefab).transform;
-            } else {
+            if (!previewManager.IsPreviewActive())
+            {
+                previewManager.PlacePreview(currentPlaceable, transform.position, true);
+            }
+            else
+            {
                 if (canPlace) {
-                    objectToPlaceTransform = null;
+                    //objectToPlaceTransform = null;
+                    previewManager.DisablePreview();
+                    Instantiate(currentPlaceable.prefab, placePosition, Quaternion.identity);
                     canPlace = false;
                 }
             }
+
+            // if (objectToPlaceTransform == null) {
+            //     objectToPlaceTransform = Instantiate(currentPlaceable.prefab).transform;
+            // } else {
+                // if (canPlace) {
+                //     //objectToPlaceTransform = null;
+                //     previewManager.DisablePreview();
+                //     canPlace = false;
+                // }
+            //}
         }
-        if (objectToPlaceTransform != null) {
-            if (currentPlaceable.placeableAnywhere) {
-                PlacementLogicAnywhere();
-            } else {
-                PlacementLogicSnap();
-            }
+        if (previewManager.IsPreviewActive() && currentPlaceable.placeableAnywhere) {
+            PlacementLogicAnywhere();
+        } else if (previewManager.IsPreviewActive()){
+            PlacementLogicSnap();
         }
+        //if (objectToPlaceTransform != null) {
+            
+        //}
     }
 
     private Collider[] overlaps;
@@ -69,12 +92,11 @@ public class ThingPlacer : MonoBehaviour
             placePos = hit.point;
             placeDir = hit.normal;
             canPlace = Vector3.Angle(placeDir, Vector3.up) < SOManager.instance.playerControls.steepestBuildingPlaceAngle;
-            Debug.Log(Vector3.Angle(placeDir, Vector3.up));
+            //Debug.Log(Vector3.Angle(placeDir, Vector3.up));
         } else {
             canPlace = false;
         }
-        objectToPlaceTransform.position = placePos;
-        objectToPlaceTransform.up = placeDir;
+        PlaceObject(placePos, placeDir);
     }
 
     private void PlacementLogicSnap() {
@@ -87,19 +109,25 @@ public class ThingPlacer : MonoBehaviour
         for (int i = 0; i < snapHitCount; i++) {
             Collider hit = overlaps[i];
             Snappable snappableComponent;
-            if (hit.gameObject.TryGetComponent(out snappableComponent)) {
+            if (hit.gameObject.TryGetComponent(out snappableComponent))
+            {
                 if (snappableComponent.IsValidSnap(currentPlaceable.snapType)) {
                     placePos = snappableComponent.gameObject.transform.position;
                     placeDir = snappableComponent.gameObject.transform.up;
                     canPlace = true;
-                    break;
-                } else {
-                    canPlace = false;
+                    PlaceObject(placePos, placeDir);
+                    return;
                 }
             }
         }
 
-        objectToPlaceTransform.position = placePos;
-        objectToPlaceTransform.up = placeDir;
+        canPlace = false;
+        PlaceObject(placePos, placeDir);
+    }
+
+    private void PlaceObject(Vector3 position, Vector3 direction)
+    {
+        placePosition = position;
+        previewManager.PlacePreview(currentPlaceable, position, canPlace);
     }
 }

@@ -8,4 +8,5 @@ public class SOPlaceable : ScriptableObject
     public GameObject prefab;
     public bool targetable;
     public float health;
+    public ItemType type;
 }
