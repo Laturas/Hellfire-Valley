@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17e8feffefdc5f4e8a07f177b77b695, type: 3}
   m_Name: DefaultEnemy
   m_EditorClassIdentifier: 
-  enemyName: Default Enemy
-  prefab: {fileID: 4160079330276728014, guid: a757522626e298b42ad1dbb2ab58ac0b, type: 3}
+  enemyName: Hellfire Enemy
+  prefab: {fileID: 4137188506664536054, guid: ac1402243b538df47909e1b092529800, type: 3}

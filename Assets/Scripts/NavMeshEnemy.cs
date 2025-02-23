@@ -12,6 +12,7 @@ public class NavMeshEnemy : MonoBehaviour
     private NavMeshAgent agent;
     private float overlapSphereCooldown = 0.25f;
     [SerializeField] private float awarenessRadius = 10f;
+    public Animator enemyAnimator;
     private bool isIdle;
     private float idleUpdateCooldown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +30,13 @@ public class NavMeshEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemyAnimator != null) {
+            if (agent.remainingDistance < 1f) {
+                enemyAnimator.SetBool("Running", false);
+            } else {
+                enemyAnimator.SetBool("Running", true);
+            }
+        }
         updateAttackCooldowns();
 
         overlapSphereCooldown -= Time.deltaTime;
@@ -110,21 +118,22 @@ public class NavMeshEnemy : MonoBehaviour
         Damageable maybeDamage;
         if (collision.gameObject.TryGetComponent(out maybeDamage)) {
             target = maybeDamage;
+            enemyAnimator.SetTrigger("Attack");
             maybeDamage.DealDamage(baseMeleeDamage, Team.EnemyTeam);
             isTouching = true;
         }
     }
 
-    void OnTriggerExit(Collider collision)
-    {
-        Damageable maybeDamage;
-        if (collision.gameObject.TryGetComponent(out maybeDamage)) {
-            target = maybeDamage;
-            maybeDamage.DealDamage(baseMeleeDamage, Team.EnemyTeam);
-            isTouching = false;
-        }
+    // void OnTriggerExit(Collider collision)
+    // {
+    //     Damageable maybeDamage;
+    //     if (collision.gameObject.TryGetComponent(out maybeDamage)) {
+    //         target = maybeDamage;
+    //         maybeDamage.DealDamage(baseMeleeDamage, Team.EnemyTeam);
+    //         isTouching = false;
+    //     }
 
-    }
+    // }
 }
 
 
