@@ -28,7 +28,7 @@ public class PreviewManager : MonoBehaviour
         return currentPreviewItem != null && currentPreviewItem.IsEnabled();
     }
 
-    public void PlacePreview(SOPlaceable item, Vector3 position, bool isGreen)
+    public void PlacePreview(SOPlaceable item, Vector3 position, Vector3 rotation, bool isGreen)
     {
         if (currentPreviewItem != null && item.type == currentPreviewItem.type)
         {
@@ -46,7 +46,7 @@ public class PreviewManager : MonoBehaviour
         }
 
         currentPreviewItem.EnablePreview(isGreen);
-        currentPreviewItem.PlacePreviewAt(position);
+        currentPreviewItem.PlacePreviewAt(position, rotation);
     }
 
     // private void SetCurrentPreviewItem(SOShopItem item, bool greenPreview)

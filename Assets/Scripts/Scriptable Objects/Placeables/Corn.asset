@@ -17,7 +17,7 @@ MonoBehaviour:
   shopLocation: 0
   price: 50
   hotbarIcon: {fileID: 21300000, guid: f4cd02c74be880946b548eb376249f75, type: 3}
-  itemPrefab: {fileID: 1852503456790008090, guid: be24e31ec8d3e8b46b333dceabc60ca5,
+  itemPrefab: {fileID: 5971331071071661190, guid: ac14233055977494a9462999113fffc3,
     type: 3}
   snapType: 4
   placeableAnywhere: 0

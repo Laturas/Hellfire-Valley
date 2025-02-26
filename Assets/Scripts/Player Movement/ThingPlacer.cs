@@ -43,7 +43,7 @@ public class ThingPlacer : MonoBehaviour
 
     public void ChangeObjectToPlace(SOPlaceable placeThisThing) {
         currentPlaceable = placeThisThing;
-        previewManager.PlacePreview(placeThisThing, transform.position, true);
+        previewManager.PlacePreview(placeThisThing, transform.position, transform.up, true);
     }
 
     private void Update() {
@@ -129,6 +129,6 @@ public class ThingPlacer : MonoBehaviour
     private void PlaceObject(Vector3 position, Vector3 direction)
     {
         placePosition = position;
-        previewManager.PlacePreview(currentPlaceable, position, canPlace);
+        previewManager.PlacePreview(currentPlaceable, position, direction, canPlace);
     }
 }

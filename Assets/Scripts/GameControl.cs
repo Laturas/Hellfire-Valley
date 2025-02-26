@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum DeathType {
@@ -32,7 +33,6 @@ public class GameControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake() {
         instance = this;
-        DontDestroyOnLoad(this);
 
         playerMoney = startingPlayerMoney;
         netWorth = startingPlayerMoney;
@@ -132,6 +132,15 @@ public class GameControl : MonoBehaviour
             Destroy(dyingGameObject); 
             break;
         }
+    }
+
+    public void DestroyGame() {
+        SceneManager.LoadScene("CropScene");
+        SceneManager.UnloadSceneAsync(1);
+    }
+    public void TitleScreen() {
+        SceneManager.LoadScene("IsekaiScene");
+        SceneManager.UnloadSceneAsync(1);
     }
 
     // e^-(sqrt(x)/s)

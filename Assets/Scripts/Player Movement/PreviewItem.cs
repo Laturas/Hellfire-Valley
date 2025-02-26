@@ -32,7 +32,7 @@ public class PreviewItem
         redPreviewObject.SetActive(false);
     }
 
-    public void PlacePreviewAt(Vector3 position)
+    public void PlacePreviewAt(Vector3 position, Vector3 rotation)
     {
         greenPreviewObject.transform.position = position;
         redPreviewObject.transform.position = position;
